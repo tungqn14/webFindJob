@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="./slick/slick.css">
+</head>
+<body>
+<header>
+  <div class="navigation-wrap start-header start-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" style="font-size: 2.25rem;" href="#"><span style="color:#e24c32;">Dev</span> <span style="color:white;">IT </span> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+            
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="index.html">Trang Chủ</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listJob.html">Việc làm</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listCompany.html">Nhà tuyển dụng</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="lifeIt.html">Cuộc sống IT</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUILogin.html">Đăng nhập</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUIRegister.html">Đăng Ký</a>
+                </li>
+              </ul>
+            </div>
+          </nav>		
+        </div>
+      </div>
+    </div>
+  </div>
+</header> 
+    <main>
+        <article style="margin-top: 10%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                        <div class="h-100 p-3 text-center" style="background-color: #0091ce;">
+                            <div class="img-form mb-4">
+                                <img src="image/bg-dangki-uv-in.png" alt="">
+                            </div>
+                            <div class="sub-text text-left">
+                                <ul class="list-unstyled fs-14 lh-28 text-white">
+                                  <li><i class="fas fa-check pr-2"></i>Tiếp cận hàng triệu công việc hoàn toàn miễn phí</li>  
+                                  <li><i class="fas fa-check pr-2"></i>Ứng tuyển nhanh chóng, dễ dàng</li>  
+                                  <li><i class="fas fa-check pr-2"></i>Nhận bản tin công việc phù hợp định kỳ</li>  
+                                  <li><i class="fas fa-check pr-2"></i>Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</li>  
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                        <div class="h-100 bg-white p-5">
+                           <h3 class="mb-5 text-center">Đăng nhập ứng viên</h3>
+                           <form>
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-sm-12 col-lg-2 col-form-label">Email</label>
+                                <div class="col-sm-12 col-lg-10">
+                                  <input type="email" class="form-control" id="inputPassword" placeholder="Nhập email của bạn">
+                                </div>
+                              </div>
+                            <div class="form-group row">
+                              <label for="inputPassword" class="col-sm-12 col-lg-2 col-form-label">Mật khẩu</label>
+                              <div class="col-sm-12 col-lg-10">
+                                <input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu của bạn">
+                                <div style="font-size: 12px;color: gray;" class="mt-2">
+                                    Mật khẩu tối thiểu 8 ký tự.
+                                 </div>
+                              </div>
+                            </div>  
+                            <div class="form-group form-check col-lg-10 offset-lg-2">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Ghi nhớ đăng nhập</label> <span class="mx-1">|</span>
+                                <a class="text-dark" href="#">Quên mật khẩu ?</a>
+                              </div>     
+                              <div class="form-group row d-block text-center">
+                               <a href="#" class="btn btn-primary text-uppercase" >Đăng Nhập</a>
+                              </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+    </main>
+<footer class="d-flex justify-content-md-around">
+  <div class="left">
+    <p>Trụ sở chính: Tầng 6, Tòa nhà Pasteur, 139 Pasteur, Phường 6, Quận 3, TP. Hồ Chí Minh - Tel: (84.28) 3822 6060</p>
+    <p>Văn phòng Hà Nội: Tầng 17, Tòa nhà VIT, 519 Kim Mã, Quận Ba Đình, Hà Nội - Tel: (84.24) 7305 6060</p>
+    <p>Email: contact@careerbuilder.vn</p>
+    <p>Copyright © CareerBuilder Vietnam.</p>
+  </div>
+  <div class="right">
+    <img src="image/dk.png" alt="">
+  </div>
+</footer>
+
+
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="index.js"></script>
+<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+<script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>

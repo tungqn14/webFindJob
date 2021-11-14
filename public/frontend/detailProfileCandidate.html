@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+</head>
+<body>
+<header>
+  <div class="navigation-wrap start-header start-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" style="font-size: 2.25rem;" href="#"><span style="color:#e24c32;">Dev</span> <span style="color:white;">IT </span> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+            
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="index.html">Trang Chủ</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listJob.html">Việc làm</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listCompany.html">Nhà tuyển dụng</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="lifeIt.html">Cuộc sống IT</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUILogin.html">Đăng nhập</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUIRegister.html">Đăng Ký</a>
+                </li>
+              </ul>
+            </div>
+          </nav>		
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navHr">
+    <span>
+      <i class="labelIcon" class="fas fa-check"></i>
+      </span>
+    <input type="checkbox" id="toggleMenu">
+    <div class="menu">
+      <a href="DashboardRecruiment.html" class="linkHr">Dashboard</a>	
+      <a href="managerPost.html" class="linkHr">Quản lý đăng tuyển</a>	
+        <a href="manageAccount.html" class="linkHr">Quản lý tài khoản</a>
+        <a href="listCandidate.html" class="linkHr">Danh sách ứng viên</a>
+    </div>
+  </div>
+</header> 
+
+<main class="bg-white shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="container">
+        <div class="row"> 
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="pb-2 mb-3">
+                <div>
+                  <span class="font-weight-bold mr-2 text-uppercase">Chức danh / Vị trí :</span> 
+                  <span class="font-weight-bold" style="color:#007db2">IT MANAGER - IT DIRECTOR (TRƯỞNG PHÒNG CNTT / GIÁM ĐỐC CNTT )</span>
+                </div>
+            </div>
+          </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="wrap d-flex justify-content-around">
+                  <div class="info-left-img-candidate" >
+                    <div style="width: 120px; height: 160px; margin: 0 auto;">
+                      <img class="w-100 h-100" src="avatar_120x160.png" alt="">
+                    </div>
+                </div>
+                <div class="info-right-img-candidate">
+                    <ul class="list-unstyled">
+                        <li class="d-flex">
+                          <div><b>Ứng viên:</b></div>
+                          <div class="text-primary font-weight-bold ml-3">Nguyễn Văn Lộc</div>
+                        </li>
+                        <li class="d-flex">
+                          <div><b>Ngày sinh:</b></div>
+                          <div class="text-dark ml-3">16/5/2022</div>
+                        </li>
+                        <li class="d-flex">
+                          <div><b>Số điện thoại:</b></div>
+                          <div class="text-dark ml-3">0315874569</div>
+                        </li>
+                        <li class="d-flex">
+                          <div><b>Giới tính:</b></div>
+                          <div class="text-dark ml-3">Nam</div>
+                        </li>
+                        <li class="d-flex">
+                          <div><b>Tỉnh/Thành Phố:</b></div>
+                          <div class="text-dark ml-3">Hồ Chí Minh</div>
+                        </li>
+                        <li class="d-flex">
+                          <div><b>Liên hệ ngay:</b></div>
+                          <div class="text-dark ml-3">
+                            <a class="btn btn-info" href="mailto: someone@example.com">abc@gmail.com</a>
+                          </div>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>           
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4 class="mb-3 mt-5 py-2 text-dark" style="background-color: #f1f9ff;"> Thông tin nghề nghiệp</h4>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="d-flex justify-content-around">
+                  <div style="font-size: 18px;">
+                    <div class="d-flex">
+                      <div><b>Năm kinh nghiệm::</b></div>
+                      <div class="text-dark ml-3">10 năm</div>
+                    </div>
+                    <div class="d-flex">
+                      <div><b>Cấp bậc hiện tại:</b></div>
+                      <div class="text-dark ml-3">Quản lý</div>
+                    </div>
+                    <div class="d-flex">
+                      <div><b>Bằng cấp:</b></div>
+                      <div class="text-dark ml-3">Đại học</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 18px;">
+                    <div class="d-flex">
+                      <div><b>Ngoại ngữ:</b></div>
+                      <div class="text-dark ml-3">Tiếng Anh - Trung cấp</div>
+                    </div>
+                    <div class="d-flex">
+                      <div><b>Mức lương mong muốn:</b></div>
+                      <div class="text-dark ml-3">60,000,000 - 90,000,000 VND</div>
+                    </div>
+                    <div class="d-flex">
+                      <div><b>Hình thức:</b></div>
+                      <div class="text-dark ml-3">Nhân viên chính thức, Bán thời gian, Thời vụ - Nghề tự do , Thực tập</div>
+                    </div>
+                  </div> 
+                </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4 class="my-5 py-2 text-dark" style="background-color: #f1f9ff;"> Nội dung hồ sơ</h4>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center">
+              <iframe src="ReactNative.pdf" style="margin:0 auto" width="80%" height="800px">
+              </iframe>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+</main>
+<footer class="d-flex justify-content-md-around">
+  <div class="left">
+    <p>Trụ sở chính: Tầng 6, Tòa nhà Pasteur, 139 Pasteur, Phường 6, Quận 3, TP. Hồ Chí Minh - Tel: (84.28) 3822 6060</p>
+    <p>Văn phòng Hà Nội: Tầng 17, Tòa nhà VIT, 519 Kim Mã, Quận Ba Đình, Hà Nội - Tel: (84.24) 7305 6060</p>
+    <p>Email: contact@careerbuilder.vn</p>
+    <p>Copyright © CareerBuilder Vietnam.</p>
+  </div>
+  <div class="right">
+    <img src="image/dk.png" alt="">
+  </div>
+</footer>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="index.js"></script>

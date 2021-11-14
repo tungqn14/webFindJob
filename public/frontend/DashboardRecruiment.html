@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+</head>
+<body>
+<header>
+  <div class="navigation-wrap start-header start-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" style="font-size: 2.25rem;" href="#"><span style="color:#e24c32;">Dev</span> <span style="color:white;">IT </span> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+            
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="index.html">Trang Chủ</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listJob.html">Việc làm</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listCompany.html">Nhà tuyển dụng</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="lifeIt.html">Cuộc sống IT</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUILogin.html">Đăng nhập</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUIRegister.html">Đăng Ký</a>
+                </li>
+              </ul>
+            </div>
+          </nav>		
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navHr">
+    <span>
+      <i class="labelIcon" class="fas fa-check"></i>
+      </span>
+    <input type="checkbox" id="toggleMenu">
+    <div class="menu">
+            <a href="DashboardRecruiment.html" class="linkHr">Dashboard</a>	
+            <a href="managerPost.html" class="linkHr">Quản lý đăng tuyển</a>	
+              <a href="manageAccount.html" class="linkHr">Quản lý tài khoản</a>
+              <a href="listCandidate.html" class="linkHr">Danh sách ứng viên</a>
+    </div>
+  </div>
+</header> 
+
+<main class="bg-white shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="container">
+      <div class="row"> 
+         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="border-bottom pb-2 mb-3">
+            <h3 class="d-inline-block">Chào mừng bạn đến với trang quản lý của nhà tuyển dụng</h3>
+           </div>
+        </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="block-infor-user p-3 mt-3">
+                <h4 class="text-center border-bottom pb-3 mb-3">Thông tin nhà tuyển dụng</h4>
+                <div><b class="mr-2">Họ và tên:</b> Nguyễn Văn A </div>
+                <div><b class="mr-2">Email:</b> abc@gmail.com</div>
+                <div> <b class="mr-2">Số điện thoại:</b> 0385746123</div>
+                <div> <b class="mr-2">Địa chỉ:</b> Tân triều Thanh trì Hà nội</div>
+                <div class=" text-center mt-3 border-top pb-3 mt-3" >
+                    <a class="btn btn-info mt-3" href="manageAccount.html">Chỉnh sửa</a>
+                </div>
+            </div>
+          </div>  
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+             <div class="block-infor-company p-3 mt-3">
+                    <h4 class="text-center border-bottom pb-3 mb-3">Thông tin công ty</h4>
+                    <div> <b class="mr-2">Tên công ty:</b> Công ty TNHH 1 thành viên VITAMILK</div>
+                    <div> <b class="mr-2">Tổng số nhân viên:</b> 100-200 nhân viên</div>
+                    <div> <b class="mr-2">Lĩnh vực hoạt động:</b>Ngân hàng,Bất động sản</div>
+                    <div>  <b class="mr-2">Địa chỉ:</b> Tân triều Thanh trì Hà nội</div>
+                    <div> <b class="mr-2">Website:</b> google.com</div>
+                    <div> 
+                        <b class="mr-2">Phúc lợi công ty:</b> 
+                        <ul class="pl-5">
+                            <li>Ăn ngon</li>
+                            <li>Ăn ngon</li>
+                            <li>Ăn ngon</li>
+                            <li>Ăn ngon</li>
+                            <li>Ăn ngon</li>
+                        </ul>
+                    </div>
+                    <div><b class="mr-2">Giới  thiệu về công ty:</b> Công ty cổ phần đầu tư Phát triển Máy Việt Nam kinh doanh thương mại dịch vụ mảng ô tô: bán ô tô, phụ tùng và có dịch vụ sửa chữa trên toàn quốc. Hiện công ty có 1 trụ sở và 13 chi nhánh trên toàn quốc. Mục tiêu năm 2023 định hướng phát triển lên mô hình tập đoàn với  nhiều mảng sản phẩm. Năm 2021 Công ty phát triển các chiến lược về  công nghê, xây dựng hệ thống  Công nghệ thông tin 4.0. Triển khai các dự án ERP cho ngành Logistic, Các dự án BI ,Các  App/ Web Thương mai điện tử.
+
+                    </div>
+                    <div class=" text-center mt-3 border-top pb-3 mt-3" >
+                        <a class="btn btn-info mt-3" href="manageAccount.html">Chỉnh sửa</a>
+                    </div>
+               
+            </div>
+             
+          </div>  
+
+         
+      </div>
+      </div>
+</main>
+<footer class="d-flex justify-content-md-around">
+  <div class="left">
+    <p>Trụ sở chính: Tầng 6, Tòa nhà Pasteur, 139 Pasteur, Phường 6, Quận 3, TP. Hồ Chí Minh - Tel: (84.28) 3822 6060</p>
+    <p>Văn phòng Hà Nội: Tầng 17, Tòa nhà VIT, 519 Kim Mã, Quận Ba Đình, Hà Nội - Tel: (84.24) 7305 6060</p>
+    <p>Email: contact@careerbuilder.vn</p>
+    <p>Copyright © CareerBuilder Vietnam.</p>
+  </div>
+  <div class="right">
+    <img src="image/dk.png" alt="">
+  </div>
+</footer>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="index.js"></script>

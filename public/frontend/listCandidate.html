@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+</head>
+<body>
+<header>
+  <div class="navigation-wrap start-header start-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" style="font-size: 2.25rem;" href="#"><span style="color:#e24c32;">Dev</span> <span style="color:white;">IT </span> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+            
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="index.html">Trang Chủ</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listJob.html">Việc làm</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link " href="listCompany.html">Nhà tuyển dụng</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" href="lifeIt.html">Cuộc sống IT</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUILogin.html">Đăng nhập</a>
+                </li>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link changeFont" href="selectUIRegister.html">Đăng Ký</a>
+                </li>
+              </ul>
+            </div>
+          </nav>		
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navHr">
+    <span>
+      <i class="labelIcon" class="fas fa-check"></i>
+      </span>
+       
+   
+    <input type="checkbox" id="toggleMenu">
+    <div class="menu">
+      <a href="DashboardRecruiment.html" class="linkHr">Dashboard</a>	
+      <a href="managerPost.html" class="linkHr">Quản lý đăng tuyển</a>	
+        <a href="manageAccount.html" class="linkHr">Quản lý tài khoản</a>
+        <a href="listCandidate.html" class="linkHr">Danh sách ứng viên</a>
+    </div>
+  </div>
+</header> 
+
+<main class="bg-white shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="container">
+            <div class="row"> 
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="mt-3 border-bottom pb-3 mb-3">
+                                <h3 class="">Tất cả ứng viên</h3>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="wrapper-search-candidate">
+                            <form>
+                            <div class="inner-form">
+                                <div class="input-field first-wrap">
+                                <div class="svg-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                    </svg>
+                                </div>
+                                <input id="search" type="text" placeholder="Bạn muốn tìm ứng viên nào ?" />
+                                </div>
+                                <div class="input-field second-wrap">
+                                <button class="btn-search" type="button">Tìm kiếm</button>
+                                </div>
+                            </div>
+                            
+                            </form>
+                        </div>
+                    </div> 
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="wrapper-search-candidate">
+                            <table class="table table-hover">
+                                <thead>
+                                  <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ứng viên </th>
+                                    <th scope="col">Kinh ngiệm</th>
+                                    <th scope="col">Lương</th>
+                                    <th scope="col">Nơi làm việc</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                  <tr class="text-center">
+                                    <th scope="row">1</th>
+                                    <td class="text-left">
+                                        <a href="detailProfileCandidate.html" class="d-block text-decoration-none text-dark rowCandidate">
+                                           <span class="d-block">
+                                            Lập trình viên PHP
+                                           </span> 
+                                         <h6>Nguyễn Văn A</h6>
+                                        </a>
+                                      
+                                        <div>
+                                            <b class="pr-2">Học vấn:</b>Đại học <span class="p-2">|</span>
+                                            <b class="pr-2">Cấp bậc:</b>Nhân Viên
+                                        </div>
+                                    </td>
+                                    <td>1 năm</td>
+                                    <td>Thỏa thuận</td>
+                                    <td>Hà nội</td>
+
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div> 
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <nav  aria-label="Page navigation example" class="text-center">
+                            <ul class="align-items-center d-inline-flex pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            </ul>
+                        </nav>
+                    </div>
+            </div>
+        </div>
+      
+</main>
+<footer class="d-flex justify-content-md-around">
+  <div class="left">
+    <p>Trụ sở chính: Tầng 6, Tòa nhà Pasteur, 139 Pasteur, Phường 6, Quận 3, TP. Hồ Chí Minh - Tel: (84.28) 3822 6060</p>
+    <p>Văn phòng Hà Nội: Tầng 17, Tòa nhà VIT, 519 Kim Mã, Quận Ba Đình, Hà Nội - Tel: (84.24) 7305 6060</p>
+    <p>Email: contact@careerbuilder.vn</p>
+    <p>Copyright © CareerBuilder Vietnam.</p>
+  </div>
+  <div class="right">
+    <img src="image/dk.png" alt="">
+  </div>
+</footer>
+
+
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="index.js"></script>
