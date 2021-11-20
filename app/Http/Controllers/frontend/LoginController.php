@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function checkLogin(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:2',
         ],[
             "email.required" =>"Email không được để trống",
             "email.email" =>"Email không đúng định dạng",
@@ -32,6 +32,9 @@ class LoginController extends Controller
                 ->withInput();
         }
         if (Auth::attempt($request->only('email','password'),$request->rememberMe)) {
+            if(Auth::user()->user_level == 0){
+                return redirect()->back()->with("alertLoginAdmin","Tài khoản không phù hợp để đăng nhập trên đây !!!");
+            }
             return redirect()->route('home.index');
         }
         return redirect()->back()->with("message","Email hoặc mật khẩu không đúng !!!");

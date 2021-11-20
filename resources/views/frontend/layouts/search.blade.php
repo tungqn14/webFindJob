@@ -15,7 +15,6 @@
                                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                     <?php $locations  =\App\Model\Location::all(); ?>
                                     <select class="form-control search-slt" name="textLocation" id="textLocation">
-                                        <option>Chọn địa điểm</option>
                                         @foreach($locations as $location)
                                         <option value="{{ $location->id }}">{{ $location->name }}</option>
                                         @endforeach

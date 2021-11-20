@@ -65,7 +65,9 @@
                         </div>
                         <div class="my-2">
                             <b class="mr-2">Giới  thiệu về công ty:</b>
-                            {!! $company['aboutCompany'] !!}
+                            <div class="mt-2">
+                                {!! $company['aboutCompany'] !!}
+                            </div>
                         </div>
                     </div>
 

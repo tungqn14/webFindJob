@@ -23,6 +23,9 @@
                     <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
                         <div class="h-100 bg-white p-5">
                             <h3 class="mb-5 text-center">Đăng nhập</h3>
+                            @if (session()->has('alertLoginAdmin'))
+                                <p class="alert alert-danger">{{ session()->get('alertLoginAdmin') }}</p>
+                            @endif
                             <form action="{{ route("login.checkLogin") }}" method="post">
                                 @csrf
                                 <div class="form-group row">

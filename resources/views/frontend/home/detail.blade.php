@@ -58,7 +58,27 @@
                                         </div>
                                         <div class="tab-pane fade" id="job" role="tabpanel" aria-labelledby="job-tab">
                                           <div>
-                                              <div class="my-3"><b class="mr-2">Tiêu đề bài viết:</b>{{$listPost->titlePost ?? "Chưa cập nhật"}}</div>
+                                              <div class="my-3">
+                                                  <b class="mr-2">Tiêu đề bài viết:</b>
+                                                  {{$listPost->titlePost ?? "Chưa cập nhật"}}
+                                              </div>
+                                              <div class="my-3">
+                                                  <b class="mr-2">Lương:</b>
+                                                  {{$listPost->wage ?? "Chưa cập nhật"}}
+                                              </div>
+                                              <div class="my-3">
+                                                  <b class="mr-2">Thời hạn:</b>
+                                                  {{$listPost->deadline ?? "Chưa cập nhật"}}
+                                              </div>
+                                              <div class="my-3">
+                                                  <b class="mr-2">Vị trí:</b>
+                                                  <?php $arrRankPost =  collect(array_map('intval', json_decode($listPost->rankPost)))  ?>
+                                                  @foreach($CheckData->typeRank[0] as $key=>$rankPost)
+                                                      @if($arrRankPost->contains($key))
+                                                          <span class="mx-2">{{ $rankPost}}</span>
+                                                      @endif
+                                                  @endforeach
+                                              </div>
                                             <div class="my-3"><b>Mô tả công việc:</b></div>
                                               <div>
                                                   {!!  $listPost->desPost !!}
@@ -120,7 +140,6 @@
                                         </div>
                                  @endforeach
                               @endif
-
 
                             </section>
                         </article>
@@ -373,9 +392,6 @@
             let idUser = $(this).attr("data-idUser");
             let idComapany = $(this).attr("data-idComapany");
             let url = $(this).attr("data-url");
-            console.log(idComapany);
-            console.log(idUser);
-            console.log(url);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -391,11 +407,12 @@
                 },
             }) .done(function(res) {
                 if(res.status == 200){
-                    console.log(res.error);
                     if(res.code == 1){
                         $(".iheart").addClass("active-heart");
+                        alert("Bạn vừa vote yêu thích cho công ty thành công");
                     }else{
                         $(".iheart").removeClass("active-heart");
+                        alert("Bạn vừa hủy vote yêu thích cho công ty");
                     }
                 }else{
                     alert(res.message);

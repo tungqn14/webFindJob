@@ -126,14 +126,14 @@
                                                     <div class="form-group">
                                                         <label class="font-weight-bold">Thành phố trụ sở công ty</label>
                                                         <select class="js-states form-control" id="field_of_activity" style="width: 100%" name="officeAddress">
-                                                            @foreach($locations as $key=>$location)
-                                                                <option {{ $employer[0]->company['officeAddress'] == $key ? "selected" : "" }}  value="{{ $location->id }}">{{ $location->name }}</option>
+                                                            @foreach($locations as $location)
+                                                                <option {{ $employer[0]->company['officeAddress'] == $location['id'] ? "selected" : "" }}  value="{{ $location['id'] }}">{{ $location['name'] }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="font-weight-bold">Giới thiệu về công ty</label>
-                                                        <textarea name="aboutCompany" id="aboutCompany">{{ $employer[0]->company['aboutCompany'] ?? "" }}</textarea>
+                                                        <textarea name="aboutCompany" id="aboutCompany">{!! $employer[0]->company['aboutCompany'] ?? "" !!}</textarea>
                                                         <input type="hidden" name="aboutCompanyOld" value="{{ $employer[0]->company['aboutCompany'] }}">
                                                         @if ($errors->has('aboutCompany'))
                                                             <p class="error m-2">
@@ -199,13 +199,5 @@
         toastr.error("{!! Session::get("alertErrorStoreProfile") !!}");
     </script>
 @endif
-@if($employer[0]->company['aboutCompany'])
-    <script>
-        var options = {
-            height:200
-        };
-        $('#aboutCompany').summernote(options);
-        $('#aboutCompany').summernote('code',"{{ $employer[0]->company['aboutCompany'] }}" );
-    </script>
-@endif
+
 @endpush

@@ -330,7 +330,6 @@ section.content-detail-company,.right-inf-company{
 .top-header-img .title-company{
     margin-left: 20px;
     flex-basis: 67%;
-    text-transform: uppercase;
     overflow: hidden;
     font-size: 20px;
 }

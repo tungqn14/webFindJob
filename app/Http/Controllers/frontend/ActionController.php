@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Blogs;
 use App\Model\Company;
 use App\Model\Favorite;
+use App\Model\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function Doctrine\Common\Cache\Psr6\get;
@@ -54,16 +55,25 @@ class ActionController extends Controller
 
         $textSearch = $request->textSearch;
         $textLocation = $request->textLocation;
+
         $dataSearch = (DB::table('users')
             ->join('posts', 'users.id', '=', 'posts.user_id')
             ->join('company','company.id', '=', 'users.company_id'))
             ->join('locations', 'locations.id', '=', 'company.officeAddress')
-            ->where("locations.id",function ($query)use($textLocation){
-                $query->where("id",$textLocation);
-            })
-            ->where("posts.titlePost","like","%{$textSearch}%")->orWhere('company.nameCompany',"like","%{$textSearch}%")
+            ->where("locations.id",$textLocation)
+           ->where('company.nameCompany',"like","%{$textSearch}%")
             ->select('posts.titlePost','posts.id_post','company.nameCompany','company.logo', 'locations.name')
             ->paginate(15);
+
+//        $dataSearch = ((DB::table('users')
+//            ->join('posts', 'users.id', '=', 'posts.user_id')
+//            ->join('company','company.id', '=', 'users.company_id'))
+//            ->join('locations', 'locations.id', '=', 'company.officeAddress'))
+//            ->where("locations.id",$textLocation)
+//            ->selectRaw('DISTINCT company.nameCompany,COUNT(company.id) as count_nameCompany,locations.name')
+//            ->groupBy("company.id,locations.id")
+//            ->paginate(15);
+//        dd($dataSearch);
         return view("frontend.home.search",compact("dataSearch"));
     }
 
