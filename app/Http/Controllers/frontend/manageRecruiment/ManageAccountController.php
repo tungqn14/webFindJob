@@ -43,7 +43,7 @@ class ManageAccountController extends Controller
         $dataCompany = [
             'nameCompany'=> $request->nameCompany,
             'officeAddress'=> $request->officeAddress,
-            'logo'=> $logoName ?  $logoName : $request->logo_old,
+            'logo'=> $logoName ?  asset("frontend/image-recruiment-logo/".$logoName) : $request->logo_old,
             'aboutCompany'=> $request->aboutCompany ? $request->aboutCompany : $request->aboutCompanyOld,
             'welfare_id'=> $request->id_welfare,
             'career_id'=> $request->id_career,

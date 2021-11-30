@@ -36,7 +36,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
+                <a href="{{ route("authAdmin.logout") }}" class="dropdown-item">
                     <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
                 </a>
             </div>

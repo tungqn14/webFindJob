@@ -11,7 +11,7 @@ Route::namespace('Auth')->prefix('admin')->group(function () {
         Route::post('handle-login', "LoginController@handleLogin")->name("handleLogin");
         Route::get('show-register', "LoginController@showRegister")->name("login.showRegister");
         Route::get('add-register', "LoginController@registerAdd");
-        Route::get('logout', "LoginController@logOut")->name("auth.logout");
+        Route::get('logout', "LoginController@logOut")->name("authAdmin.logout");
         Route::get('forget-password-index', 'ForgotPasswordController@showLinkRequestForm')->name('forget.index');
         Route::post('forget-password', 'ForgotPasswordController@sendResetLinkEmail')->name('forget-password');
         Route::get('reset-password-index/{token}', 'ResetPasswordController@showResetForm')->name('reset.index');

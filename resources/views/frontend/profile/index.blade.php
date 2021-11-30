@@ -13,7 +13,7 @@
                             <div class="card-body box-profile">
                                 <div class="text-center">
                                     <img width="120px" height="160px" class="profile-user-img img-fluid img-circle"
-                                         src="{{ $user->avatar ? asset("frontend/image-profile/".$user->avatar) : asset("frontend/avatar_120x160.png") }}"
+                                         src="{{ $user->avatar ? $user->avatar : asset("frontend/avatar_120x160.png") }}"
                                          alt="User profile picture">
                                 </div>
 
@@ -127,7 +127,7 @@
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                     <div class="text-center">
                                                         @if($user->cv)
-                                                        <iframe src="{{ $user->cv ?  asset("frontend/file-cv/". $user->cv) : "" }}" style="margin:0 auto" width="80%" height="800px">
+                                                        <iframe src="{{ $user->cv ?  $user->cv : "" }}" style="margin:0 auto" width="80%" height="800px">
                                                         </iframe>
                                                         @else
                                                             <div class="text-center"> Cập nhật</div>

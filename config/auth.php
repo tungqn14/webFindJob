@@ -42,13 +42,9 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
-        ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
         ],
 
     ],
@@ -71,10 +67,10 @@ return [
     */
 
     'providers' => [
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Model\Admin::class,
-        ],
+//        'admins' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Model\Admin::class,
+//        ],
 
         'users' => [
             'driver' => 'eloquent',
@@ -103,11 +99,11 @@ return [
             'table' => 'password_resets',
             'expire' => 15,
         ],
-        'admins' => [
-            'provider' => 'admins',
-            'table' => 'password_resets',
-            'expire' => 15,
-        ],
+//        'admins' => [
+//            'provider' => 'admins',
+//            'table' => 'password_resets',
+//            'expire' => 15,
+//        ],
     ],
 
     /*

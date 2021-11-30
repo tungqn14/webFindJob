@@ -32,9 +32,9 @@ class LoginController extends Controller
                 ->withInput();
         }
         if (Auth::attempt($request->only('email','password'),$request->rememberMe)) {
-            if(Auth::user()->user_level == 0){
-                return redirect()->back()->with("alertLoginAdmin","Tài khoản không phù hợp để đăng nhập trên đây !!!");
-            }
+//            if(Auth::user()->user_level == 0){
+//                return redirect()->back()->with("alertLoginAdmin","Tài khoản không phù hợp để đăng nhập trên đây !!!");
+//            }
             return redirect()->route('home.index');
         }
         return redirect()->back()->with("message","Email hoặc mật khẩu không đúng !!!");

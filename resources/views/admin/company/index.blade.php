@@ -39,7 +39,7 @@
                                 <tr>
                                     <td class="text-center">{{  $item->favorites_count }}</td>
                                     <td class="text-center">
-                                        <img src="{{ asset("frontend/image-recruiment-logo/".$item->logo) }}" width="200px" height="150px" alt="">
+                                        <img src="{{ $item->logo }}" width="200px" height="150px" alt="">
                                     </td>
                                     <td class="text-center">
                                         {{ $item->nameCompany }}

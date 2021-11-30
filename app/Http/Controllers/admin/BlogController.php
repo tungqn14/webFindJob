@@ -31,8 +31,8 @@ class BlogController extends Controller
         $this->blog->titleBlogs = $request->titleBlog;
         $this->blog->description = $request->desBlog;
         $this->blog->content = $request->contentBlog;
-        $this->blog->images = $themeName;
-        $this->blog->active = 0;
+        $this->blog->images = asset("frontend/image-blog/".$themeName);
+        $this->blog->active =  $request->active;
         if( $this->blog->save()){
             return redirect()->route("blog.index");
         }
@@ -80,7 +80,7 @@ class BlogController extends Controller
             $blog->titleBlogs = $request->titleBlog;
             $blog->description = $request->desBlog;
             $blog->content = $request->contentBlog;
-            $blog->images = $themeName ? $themeName :  $request->themeOld;
+            $blog->images = $themeName ? asset("frontend/image-blog".$themeName) :  $request->themeOld;
             $blog->active = $request->active;
             if( $blog->save()){
                 return redirect()->route("blog.index");

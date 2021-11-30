@@ -7,14 +7,20 @@
     <div class="container bg-white">
         <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                        <article>
+                        <article class="wrap-detail-company">
+                            @if( $listPost->vip == 1)
+                            <div class="vip-huyhieu">
+                                <span style="color: #fffffc;font-size: 18px;"><i style="color: red" class="fas fa-heart"></i> Yêu thích</span>
+                            </div>
+                            @endif
                             <section class="content-detail-company">
+
                                 <div class="top-header-img d-flex justify-content-between">
                                     <div class="img-header">
-                                        <img src="{{ asset("frontend/image-recruiment-logo/".$listPost->logo) }}" alt="">
+                                        <img src="{{ $listPost->logo }}" alt="">
                                     </div>
-                                    <h4 class="title-company">
-                                      {{ $listPost->nameCompany }}</h4>
+                                    <h4 class="title-company">{{ $listPost->nameCompany }}</h4>
+
                                 </div>
                                 <div class="tabs-inf">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
