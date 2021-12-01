@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\frontend\manageRecruiment;
-
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountRequest;
 use App\Model\Company;
@@ -38,12 +38,12 @@ class ManageAccountController extends Controller
         if($request->hasFile('logo') ){
             $logo = $request->file('logo');
             $logoName = time().'.'.$logo->getClientOriginalExtension();
-            $logo->move(public_path("frontend/image-recruiment-logo/"),$logoName);
+            $pathLogo = Storage::putFileAs('avatars', $request->file('logo'), $logoName );
         }
         $dataCompany = [
             'nameCompany'=> $request->nameCompany,
             'officeAddress'=> $request->officeAddress,
-            'logo'=> $logoName ?  $logoName : $request->logo_old,
+            'logo'=> $logoName ?  $pathLogo : $request->logo_old,
             'aboutCompany'=> $request->aboutCompany ? $request->aboutCompany : $request->aboutCompanyOld,
             'welfare_id'=> $request->id_welfare,
             'career_id'=> $request->id_career,

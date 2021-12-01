@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlogRequest;
 use App\Model\Blogs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
@@ -26,12 +27,13 @@ class BlogController extends Controller
         if($request->hasFile('theme') ){
             $theme = $request->file('theme');
             $themeName = time().'.'.$theme->getClientOriginalExtension();
-            $theme->move(public_path("frontend/image-blog"),$themeName);
+            $pathTheme = Storage::putFileAs('ThemeBlog', $request->file('theme'), $themeName );
+
         }
         $this->blog->titleBlogs = $request->titleBlog;
         $this->blog->description = $request->desBlog;
         $this->blog->content = $request->contentBlog;
-        $this->blog->images = $themeName;
+        $this->blog->images = $pathTheme;
         $this->blog->active = 0;
         if( $this->blog->save()){
             return redirect()->route("blog.index");
