@@ -7,7 +7,8 @@ use App\Http\Middleware\CheckLogin;
 Route::namespace('Auth')->prefix('admin')->group(function () {
     Route::prefix('login')->group(function () {
         Route::get('/', "LoginController@index")->name("login.index");
-        Route::post('register', "LoginController@register")->name("login.register");
+        Route::post('handle-register', "LoginController@registerAdd")->name("login.register");
+        Route::get('register-form', "LoginController@register")->name("authAdmin.register");
         Route::post('handle-login', "LoginController@handleLogin")->name("handleLogin");
         Route::get('show-register', "LoginController@showRegister")->name("login.showRegister");
         Route::get('add-register', "LoginController@registerAdd");

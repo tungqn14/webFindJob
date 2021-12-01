@@ -78,11 +78,13 @@
                     </div>
                 </div>
 
-                <div class="container-login100-form-btn">
+                <div class="container-login100-form-btn d-flex">
                     <button class="login100-form-btn">
                         Đăng nhập
                     </button>
+                    <a href="{{ route("authAdmin.register") }}" class="btn btn-warning ml-3"> Dang Ky </a>
                 </div>
+
             </form>
         </div>
     </div>
