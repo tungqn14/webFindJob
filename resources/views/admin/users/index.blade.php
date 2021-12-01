@@ -24,7 +24,7 @@
                             <thead>
                             <tr>
                                 <th class="text-center">#</th>
-                                <th class="text-center">Thông tin người dùng</th>
+                                <th  style="width: 300px;" class="text-center">Thông tin người dùng</th>
                                 <th class="text-center">Thuộc</th>
                                 <th class="text-center">Hành động</th>
                             </tr>
@@ -36,7 +36,7 @@
                                     <th>
                                         {{   $user->id }}
                                     </th>
-                                    <td class="text-center">
+                                    <td  style="width: 350px;">
                                        <p><b>Tên đầy đủ: </b>{{  $user->fullName }}</p>
                                        <p><b>Email: </b>{{  $user->email }}</p>
                                        <p><b>Điện thoại: </b>{{  $user->phone }}</p>

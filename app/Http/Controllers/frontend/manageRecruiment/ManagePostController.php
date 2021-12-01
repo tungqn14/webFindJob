@@ -29,6 +29,8 @@ class ManagePostController extends Controller
     }
 
     public function store(StorePostRequest $request,$id){
+//        $str = htmlentities($request->desPost);
+//        dd(html_entity_decode($str));
             $this->post->desPost = $request->desPost;
             $this->post->reqPost = $request->reqPost;
             $this->post->typeTimePost = json_encode($request->typeTime);
@@ -39,7 +41,6 @@ class ManagePostController extends Controller
             $this->post->rankPost = json_encode($request->rank);
             $this->post->tech_id = json_encode($request->id_tech);
             $this->post->user_id = $id;
-
             if($this->post->save()){
                 return redirect()->route("recruiment.managePost",["id"=>Auth::user()->id])->with("alertSuccessPost","Tạo bài viết thành công !");
             }

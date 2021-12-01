@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="my-3" style="width: 1200px;height: 150px;margin: 0 auto">
-                        <img style="object-fit: cover;width: 100%;height: 100%" src="{{ asset("frontend/image-blog/".$blog->images) }}" alt="">
+                        <img style="object-fit: cover;width: 100%;height: 100%" src="{{ $blog->images }}" alt="">
                     </div>
                     <h2 class="my-2">{{$blog->titleBlogs}}</h2>
 

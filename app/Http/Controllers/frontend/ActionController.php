@@ -33,7 +33,17 @@ class ActionController extends Controller
           }
           $this->favorite->user_id = $request->idUser;
           $this->favorite->company_id = $request->idCompany;
+
           if($this->favorite->save()){
+              $listCompany = $this->company->withCount("favorites")->orderByDesc("favorites_count")->get();
+              foreach ($listCompany as $item){
+                  if($item->favorites_count >= 3 ){
+                      $item->vip = 1;
+                  }else{
+                      $item->vip = 0;
+                  }
+                  $item->save();
+              }
               return response()->json(["status"=>200,"code"=>1,"message"=>"Yêu thích công ty thành công"]);
           }
             return response()->json(["status"=>500,"code"=>500,"message"=>"Lỗi server !!! Xử lý thất bại"]);
@@ -61,19 +71,9 @@ class ActionController extends Controller
             ->join('company','company.id', '=', 'users.company_id'))
             ->join('locations', 'locations.id', '=', 'company.officeAddress')
             ->where("locations.id",$textLocation)
-           ->where('company.nameCompany',"like","%{$textSearch}%")
-            ->select('posts.titlePost','posts.id_post','company.nameCompany','company.logo', 'locations.name')
+           ->where('posts.titlePost',"like","%{$textSearch}%")
+            ->select('posts.deadline','posts.wage','posts.titlePost','posts.id_post','company.nameCompany','company.logo', 'locations.name')
             ->paginate(15);
-
-//        $dataSearch = ((DB::table('users')
-//            ->join('posts', 'users.id', '=', 'posts.user_id')
-//            ->join('company','company.id', '=', 'users.company_id'))
-//            ->join('locations', 'locations.id', '=', 'company.officeAddress'))
-//            ->where("locations.id",$textLocation)
-//            ->selectRaw('DISTINCT company.nameCompany,COUNT(company.id) as count_nameCompany,locations.name')
-//            ->groupBy("company.id,locations.id")
-//            ->paginate(15);
-//        dd($dataSearch);
         return view("frontend.home.search",compact("dataSearch"));
     }
 

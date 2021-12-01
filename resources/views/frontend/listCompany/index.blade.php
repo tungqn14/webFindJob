@@ -12,7 +12,7 @@
                             <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
                                 <div class="block-company my-4">
                                     <div class="left-img">
-                                        <img src="{{ asset("frontend/image-recruiment-logo/".$company->logo) }}" alt="Image"/>
+                                        <img src="{{ $company->logo }}" alt="Image"/>
                                     </div>
                                     <a href="{{ route("home.detail",["id"=>$company->userPost[0]["id_post"]]) }}" class="description">
                                         <h3 class="title-post" title="{{ $company->nameCompany }}">{{ $company->nameCompany }} </h3>

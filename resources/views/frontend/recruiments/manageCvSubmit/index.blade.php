@@ -35,7 +35,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                   <a style="cursor: pointer" data-toggle="modal" data-target="#cvModal_{{$cv->id}}" class="text-light text-decoration-none badge badge-info"><i class="fas fa-eye"></i>Xem Cv</a>
+                                    <a style="cursor: pointer" data-toggle="modal" data-target="#cvModal_{{$cv->id}}" class="text-light text-decoration-none badge badge-info"><i class="fas fa-eye"></i>Xem Cv</a>
                                     <div  class="modal" id="cvModal_{{$cv->id}}">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content"  style="width: 1200px;left: -190px;">

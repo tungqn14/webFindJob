@@ -65,7 +65,7 @@
                                                     <!-- Modal body -->
                                                     <div class="modal-body">
                                                         <div class="my-3" style="width: 600px;height: 100px;margin: 0 auto">
-                                                            <img style="object-fit: cover;width: 100%;height: 100%" src="{{ asset("frontend/image-blog/".$blog->images) }}" alt="">
+                                                            <img style="object-fit: cover;width: 100%;height: 100%" src="{{ $blog->images }}" alt="">
                                                         </div>
                                                        <h2>{{$blog->titleBlogs}}</h2>
                                                       <div class="my-3">

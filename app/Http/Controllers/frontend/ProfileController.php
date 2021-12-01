@@ -78,8 +78,8 @@ class ProfileController extends Controller
                   $user->rankUser = $request->education;
                   $user->typeTimeUser = $request->typeTime;
                   $user->descripYourself = $request->descripYourself;
-                  $user->avatar = $avatarName ? $avatarName : $request->avatarOld;
-                  $user->cv = $cvName ? $cvName : $request->cvOld;
+                  $user->avatar = $avatarName ? asset("frontend/image-profile/".$avatarName) : $request->avatarOld;
+                  $user->cv = $cvName ? asset("frontend/file-cv/".$cvName) : $request->cvOld;
                   $user->position = $request->position;
                   if ($request->skills) {
                       $user->skills()->sync($request->skills);

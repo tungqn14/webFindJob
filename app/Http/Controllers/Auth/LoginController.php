@@ -40,19 +40,21 @@ class LoginController extends Controller
     {
 //       $this->middleware('guest')->except('logout');
     }
-    public function registerAdd(){
+    public function registerAdd(Request $request){
         \DB::table('users')->insert([
             'fullName' => "Administrator",
-            'email' => "toro.freetime@gmail.com",
-            'password' => Hash::make('123'),
-            'phone' => "032154687",
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'user_level'=> 0
         ]);
+        return redirect()->route('dashboad.index');
     }
     public function index(){
         return view("login.login");
     }
-
+    public function register(){
+        return view("login.register");
+    }
     public function handleLogin(Request $request){
 
         $validator = Validator::make($request->all(), [

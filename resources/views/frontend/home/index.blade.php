@@ -7,18 +7,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h3 class="title-header">Việc làm hot nhất </h3>
+                        <h3 class="title-header">Việc làm nổi bật </h3>
                     </div>
                     @foreach($postHot as $post)
                         @foreach($post->userPost as $item)
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <div class="block-post">
                                 <div class="left-img">
-                                    <img src="{{ asset("frontend/image-recruiment-logo/".$post->logo) }}" alt="Image"/>
+                                    <img src="{{$post->logo }}" alt="Image"/>
                                 </div>
                                 <a href="{{ route("home.detail",["id"=>$item->id_post]) }}" class="description">
                                     <h3 class="title-post">{{ $item["titlePost"] }} </h3>{{$post->wage}}
-                                    <p class="address">{{ $post->location->name }} </p>
+                                    <span class="title-deal-gross">Địa chỉ : </span>  <span class="address">{{ $post->location->name }} </span>
                                     <div class="d-flex justify-content-between">
                                         <div class="salary">
                                             <span class="title-deal-gross">Mức lương : </span>
@@ -46,25 +46,25 @@
                         </div>
                          @endforeach
                     @endforeach
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="block-post">
-                <div class="left-img">
-                    <img src="image/TopDev-CMCGlobal-Logo-1626313776.jpg" alt="Image"/>
-                </div>
-                <a href="details.html" class="description">
-                    <h3 class="title-post">12 Java Developers (AngularJS, SQL) | Up to $2,000 (AngularJS, Java, Full-Stack, Spring) </h3>
-                    <p class="address"> Quận Cầu Giấy, Hà Nội </p>
-                    <div class="d-flex justify-content-between">
-                        <div class="salary">
-                            <span class="title-deal-gross">Mức lương : </span>
-                            <span class="deal-gross">Thỏa thuận</span>
-                        </div>
-                        <span class="time">
-                        <i class="fa fa-calendar" style="margin-right:3px;color: gray;"></i>  31/12/1999 </span>
-                    </div>
-                </a>
-            </div>
-        </div>
+{{--                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">--}}
+{{--            <div class="block-post">--}}
+{{--                <div class="left-img">--}}
+{{--                    <img src="image/TopDev-CMCGlobal-Logo-1626313776.jpg" alt="Image"/>--}}
+{{--                </div>--}}
+{{--                <a href="details.html" class="description">--}}
+{{--                    <h3 class="title-post">12 Java Developers (AngularJS, SQL) | Up to $2,000 (AngularJS, Java, Full-Stack, Spring) </h3>--}}
+{{--                    <p class="address"> Quận Cầu Giấy, Hà Nội </p>--}}
+{{--                    <div class="d-flex justify-content-between">--}}
+{{--                        <div class="salary">--}}
+{{--                            <span class="title-deal-gross">Mức lương : </span>--}}
+{{--                            <span class="deal-gross">Thỏa thuận</span>--}}
+{{--                        </div>--}}
+{{--                        <span class="time">--}}
+{{--                        <i class="fa fa-calendar" style="margin-right:3px;color: gray;"></i>  31/12/1999 </span>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 </div>
 </article>
@@ -86,11 +86,11 @@
                         <div>
                         <div class="block-post" style="margin: 30px 20px;">
                             <div class="left-img">
-                                <img height="120px" src="{{ asset("frontend/image-recruiment-logo/".$post->logo) }}" alt="Image"/>
+                                <img height="120px" src="{{$post->logo }}" alt="Image"/>
                             </div>
                             <a href="{{ route("home.detail",["id"=>$item->id_post]) }}" class="description">
                                 <h3 class="title-post">{{ $item["titlePost"] }} </h3>{{$post->wage}}
-                                <p class="address">{{ $post->location->name }} </p>
+                                <span class="title-deal-gross">Địa chỉ : </span>  <span class="address">{{ $post->location->name }} </span>
                                 <div class="d-flex justify-content-between">
                                     <div class="salary">
                                         <span class="title-deal-gross">Mức lương : </span>
@@ -131,7 +131,7 @@
         @foreach($blogs as $blog)
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="card" >
-                <img class="card-img-top" src="{{ asset("frontend/image-blog/$blog->images") }}" title="Card image cap">
+                <img class="card-img-top" src="{{ $blog->images }}" title="Card image cap">
                 <div class="card-body">
                     <a class="d-block" href="{{ route("action.detailLifeIT",["id"=>$blog->id]) }}"><h5 class="card-title">{{ $blog->titleBlogs }}</h5></a>
                     <div class="card-text">

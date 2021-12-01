@@ -14,7 +14,7 @@
                         <h4 class="border-bottom pb-3 mb-3">Thông tin nhà tuyển dụng</h4>
                         <div class="border-bottom mb-2 d-flex  justify-content-lg-around pb-4">
                             <div style="width: 20%">
-                                <img width="100%" height="160px" src="{{ asset("frontend/image-recruiment-logo/".$company['logo']) }}" alt="">
+                                <img width="100%" height="160px" src="{{ $company['logo'] }}" alt="">
                             </div>
                             <div style="width: 70%">
                                 <div><b class="mr-2">Họ và tên:</b> {{ $user->fullName }} </div>

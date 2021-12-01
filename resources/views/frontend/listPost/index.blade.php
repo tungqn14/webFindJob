@@ -14,11 +14,12 @@
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="block-post" style="margin: 30px 20px;">
                                     <div class="left-img">
-                                        <img height="120px" src="{{ asset("frontend/image-recruiment-logo/".$post->logo) }}" alt="Image"/>
+                                        <img height="120px" src="{{ $post->logo }}" alt="Image"/>
                                     </div>
                                     <a href="{{ route("home.detail",["id"=>$item->id_post]) }}" class="description">
                                         <h3 class="title-post">{{ $item["titlePost"] }} </h3>{{$post->wage}}
-                                        <p class="address">{{ $post->location->name }} </p>
+                                        <span class="title-deal-gross">Địa chỉ : </span>  <span class="address">{{ $post->location->name }} </span>
+
                                         <div class="d-flex justify-content-between">
                                             <div class="salary">
                                                 <span class="title-deal-gross">Mức lương : </span>

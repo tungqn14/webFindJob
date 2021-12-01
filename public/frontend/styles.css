@@ -8,7 +8,7 @@ body{
     background-color: #f0f0f0;
 }
 .detail-main{
-    margin-top: 10%;
+    margin-top: 3%;
 }
 .wrap-top{
     padding: 20px 0px;
@@ -298,6 +298,19 @@ a:hover{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     padding-bottom: 4px;
+}
+.wrap-detail-company{
+    position: relative;
+}
+.vip-huyhieu{
+    position: absolute;
+    right: -56%;
+    width: 149px;
+    text-align: center;
+    top: 1%;
+    background: #607d8b;
+    padding: 10px;
+    transform: rotateZ(36deg);
 }
 section.content-detail-company,.right-inf-company{
     border: 1px solid gray;

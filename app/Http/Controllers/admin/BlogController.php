@@ -34,7 +34,7 @@ class BlogController extends Controller
         $this->blog->description = $request->desBlog;
         $this->blog->content = $request->contentBlog;
         $this->blog->images = $pathTheme;
-        $this->blog->active = 0;
+        $this->blog->active =  $request->active;
         if( $this->blog->save()){
             return redirect()->route("blog.index");
         }
@@ -71,18 +71,18 @@ class BlogController extends Controller
             if($request->hasFile('theme') ){
                 $theme = $request->file('theme');
                 $themeName = time().'.'.$theme->getClientOriginalExtension();
-                $theme->move(public_path("frontend/image-blog/"),$themeName);
+                $pathTheme = Storage::putFileAs('ThemeBlog', $request->file('theme'), $themeName );
                 $imgThemeOld  = $request->themeOld;
                 if($imgThemeOld){
-                    if(\File::exists(public_path('frontend/image-blog/'.$imgThemeOld))){
-                        \File::delete(public_path('frontend/image-blog/'.$imgThemeOld));
+                    if(\File::exists(public_path('ThemeBlog/'.$imgThemeOld))){
+                        \File::delete(public_path('ThemeBlog/'.$imgThemeOld));
                     }
                 }
             }
             $blog->titleBlogs = $request->titleBlog;
             $blog->description = $request->desBlog;
             $blog->content = $request->contentBlog;
-            $blog->images = $themeName ? $themeName :  $request->themeOld;
+            $blog->images = $themeName ? $pathTheme:  $request->themeOld;
             $blog->active = $request->active;
             if( $blog->save()){
                 return redirect()->route("blog.index");

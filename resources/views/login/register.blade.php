@@ -58,31 +58,7 @@
                 @if($errors->has('password'))
                     <div style="color: red;font-style: italic">{{ $errors->first('password') }}</div>
                 @endif
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    <span class="label-input100">Telephone</span>
-                    <input class="input100" value="{{ old("email") }}" type="text" name="telephone" placeholder="Nhập email">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    <span class="label-input100">userName</span>
-                    <input class="input100" value="{{ old("email") }}" type="text" name="name" placeholder="Nhập email">
-                    <span class="focus-input100"></span>
-                </div>
 
-                <div class="flex-sb-m w-full p-b-30">
-                    <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="rememberMe">
-                        <label class="label-checkbox100" for="ckb1">
-                            Ghi nhớ mật khẩu
-                        </label>
-                    </div>
-
-                    <div>
-                        <a href="#" class="txt1">
-                            Forgot Password?
-                        </a>
-                    </div>
-                </div>
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">

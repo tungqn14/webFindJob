@@ -11,7 +11,7 @@
                     @foreach($blogs as $blog)
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                             <div class="card my-4" >
-                                <img class="card-img-top" src="{{ asset("frontend/image-blog/$blog->images") }}" title="Card image cap">
+                                <img class="card-img-top" src="{{ $blog->images }}" title="Card image cap">
                                 <div class="card-body">
                                     <a class="d-block" href="{{ route("action.detailLifeIT",["id"=>$blog->id]) }}"><h5 class="card-title">{{ $blog->titleBlogs }}</h5></a>
                                     <div class="card-text">

@@ -67,7 +67,7 @@
                                             <input name="theme" type="file">
                                                 <input type="hidden" name="themeOld" value="{{ $blog->images }}">
                                             <div class="my-4 border" style="width: 300px;height: 100px">
-                                                <img style="width: 100%;height: 100%;object-fit: cover" src="{{ asset("frontend/image-blog/".$blog->images) }}" alt="">
+                                                <img style="width: 100%;height: 100%;object-fit: cover" src="{{ $blog->images }}" alt="">
                                             </div>
                                         </div>
                                     </div>
