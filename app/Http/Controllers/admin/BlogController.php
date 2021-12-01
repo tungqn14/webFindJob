@@ -33,7 +33,7 @@ class BlogController extends Controller
         $this->blog->titleBlogs = $request->titleBlog;
         $this->blog->description = $request->desBlog;
         $this->blog->content = $request->contentBlog;
-        $this->blog->images = $pathTheme;
+        $this->blog->images =  public_path($pathTheme);
         $this->blog->active =  $request->active;
         if( $this->blog->save()){
             return redirect()->route("blog.index");
@@ -82,7 +82,7 @@ class BlogController extends Controller
             $blog->titleBlogs = $request->titleBlog;
             $blog->description = $request->desBlog;
             $blog->content = $request->contentBlog;
-            $blog->images = $themeName ? $pathTheme:  $request->themeOld;
+            $blog->images = $themeName ? public_path($pathTheme) : $request->themeOld;
             $blog->active = $request->active;
             if( $blog->save()){
                 return redirect()->route("blog.index");
