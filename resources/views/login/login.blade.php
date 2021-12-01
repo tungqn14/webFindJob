@@ -13,17 +13,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/fonts/font-awesome-4.7.0/css/font-awesome.min.css") }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/fonts/Linearicons-Free-v1.0.0/icon-font.min.css") }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/vendor/animate/animate.css") }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/vendor/css-hamburgers/hamburgers.min.css") }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/vendor/animsition/css/animsition.min.css") }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/vendor/select2/select2.min.css") }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/vendor/daterangepicker/daterangepicker.css") }}">
-    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/css/util.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("admin/login_template/css/main.css") }}">
     <!--===============================================================================================-->
@@ -86,18 +75,8 @@
 
 <!--===============================================================================================-->
 <script src="{{ asset("admin/login_template/vendor/jquery/jquery-3.2.1.min.js") }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset("admin/login_template/vendor/animsition/js/animsition.min.js") }}"></script>
-<!--===============================================================================================-->
 <script src="{{ asset("admin/login_template/vendor/bootstrap/js/popper.js") }}"></script>
 <script src="{{ asset("admin/login_template/vendor/bootstrap/js/bootstrap.min.js") }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset("admin/login_template/vendor/select2/select2.min.js") }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset("admin/login_template/vendor/daterangepicker/moment.min.js") }}"></script>
-<script src="{{ asset("admin/login_template/vendor/daterangepicker/daterangepicker.js") }}"></script>
-<!--===============================================================================================-->
-<script src="{{ asset("admin/login_template/vendor/countdowntime/countdowntime.js") }}"></script>
 <!--===============================================================================================-->
 <script src="{{ asset("admin/login_template/js/main.js") }}"></script>
 
