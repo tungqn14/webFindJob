@@ -19,6 +19,7 @@
                                     <a href="{{ route("home.detail",["id"=>$item->id_post]) }}" class="description">
                                         <h3 class="title-post">{{ $item["titlePost"] }} </h3>{{$post->wage}}
                                         <span class="title-deal-gross">Địa chỉ : </span>  <span class="address">{{ $post->location->name }} </span>
+
                                         <div class="d-flex justify-content-between">
                                             <div class="salary">
                                                 <span class="title-deal-gross">Mức lương : </span>
