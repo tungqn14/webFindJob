@@ -22,7 +22,8 @@ Route::namespace('api')->group(function () {
     Route::post('register', "AuthController@register");
     Route::post('logout', "AuthController@logOut");
     Route::get('list-company', "CompanyController@index");
-    Route::get('list-post', "PostController@index");
+    Route::get('list-post-home', "PostController@index");
+    Route::get('list-post-all', "PostController@listAll");
     Route::get('home', "HomeController@index");
     Route::get('detail-post-{id}', "HomeController@detailPost");
     Route::get('detail-company-{id}', "HomeController@detailCompany");
