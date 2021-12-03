@@ -16,7 +16,7 @@ class CompanyController extends Controller
         //$this->middleware('jwt', ['except' => ['index']]);
     }
     public function index(){
-        $datas  = $this->company->with("userPost","location")->paginate(15);
+        $datas  = $this->company->with("userPost","users","location")->paginate(15);
         return response()->json([
             'data'=>$datas,
             "status"=>200
