@@ -31,7 +31,7 @@ class HomeController extends Controller
         $this->location = $location;
     }
     public function index(){
-        $datas  = $this->company->with("userPost","users","location")->paginate(15);
+        $datas  = $this->company->with("userPost","users","location")->paginate(5);
             return response()->json([
                 'data'=>$datas,
                 "status"=>200

@@ -11,9 +11,13 @@ class CompanyController extends Controller
     protected $company;
     public function __construct()
     {
-        $this->middleware('jwt', ['except' => ['index']]);
+        //$this->middleware('jwt', ['except' => ['index']]);
     }
     public function index(){
-
+        $datas  = $this->company->with("userPost","location")->paginate(15);
+        return response()->json([
+            'data'=>$datas,
+            "status"=>200
+        ]);
     }
 }
