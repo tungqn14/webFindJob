@@ -14,10 +14,10 @@ class CreateWelfaresTable extends Migration
     public function up()
     {
         Schema::create('welfares', function (Blueprint $table) {
-//            $table->increments("id");
-//            $table->string("name_welfare")->nullable();
-//            $table->string("icon_welfare")->nullable();
-//            $table->timestamps();
+            $table->increments("id");
+            $table->string("name_welfare")->nullable();
+            $table->string("icon_welfare")->nullable();
+            $table->timestamps();
         });
     }
 

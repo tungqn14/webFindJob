@@ -13,19 +13,19 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-//            $table->increments("id_post");
-//            $table->longText("desPost")->nullable();
-//            $table->longText("reqPost")->nullable();
-//            $table->string("typeTimePost")->nullable();
-//            $table->string("deadline")->nullable();
-//            $table->string("wage")->nullable();
-//            $table->integer("quantity")->default(0);
-//            $table->string("titlePost")->nullable();
-//            $table->string("rankPost")->nullable();
-//            $table->string("tech_id");
-//            $table->integer("user_id");
-//            $table->softDeletes();
-//            $table->timestamps();
+            $table->increments("id_post");
+            $table->longText("desPost")->nullable();
+            $table->longText("reqPost")->nullable();
+            $table->string("typeTimePost")->nullable();
+            $table->string("deadline")->nullable();
+            $table->string("wage")->nullable();
+            $table->integer("quantity")->default(0);
+            $table->string("titlePost")->nullable();
+            $table->string("rankPost")->nullable();
+            $table->string("tech_id");
+            $table->integer("user_id");
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

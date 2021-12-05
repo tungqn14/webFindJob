@@ -14,10 +14,10 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('career', function (Blueprint $table) {
-//            $table->increments("id");
-//            $table->string("name_career")->nullable();
-//            $table->integer("active")->default(1);
-//            $table->timestamps();
+            $table->increments("id");
+            $table->string("name_career")->nullable();
+            $table->integer("active")->default(1);
+            $table->timestamps();
         });
     }
 

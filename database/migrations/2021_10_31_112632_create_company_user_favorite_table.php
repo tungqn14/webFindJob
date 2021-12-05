@@ -14,10 +14,10 @@ class CreateCompanyUserFavoriteTable extends Migration
     public function up()
     {
         Schema::create('company_user_favorite', function (Blueprint $table) {
-//            $table->increments("id");
-//            $table->integer("user_id");
-//            $table->integer("company_id");
-//            $table->timestamps();
+            $table->increments("id");
+            $table->integer("user_id");
+            $table->integer("company_id");
+            $table->timestamps();
         });
     }
 

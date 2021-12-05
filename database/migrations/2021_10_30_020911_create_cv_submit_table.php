@@ -14,13 +14,13 @@ class CreateCvSubmitTable extends Migration
     public function up()
     {
         Schema::create('cv_submit', function (Blueprint $table) {
-//            $table->increments("id");
-//            $table->string("name")->nullable();
-//            $table->string("telephone")->nullable();
-//            $table->string("email")->nullable();
-//            $table->integer("post_submit_id")->nullable();
-//            $table->string("cv")->nullable();
-//            $table->timestamps();
+            $table->increments("id");
+            $table->string("name")->nullable();
+            $table->string("telephone")->nullable();
+            $table->string("email")->nullable();
+            $table->integer("post_submit_id")->nullable();
+            $table->string("cv")->nullable();
+            $table->timestamps();
         });
     }
 
