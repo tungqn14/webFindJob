@@ -28,8 +28,8 @@ Route::namespace('api')->group(function () {
     Route::get('detail-post-{id}', "HomeController@detailPost");
     Route::get('detail-company-{id}', "HomeController@detailCompany");
     Route::middleware('jwt')->group(function () {
-        Route::post('save-post', "HomeController@savePost");
-        Route::post('list-save-post', "HomeController@listSavePost");
+        Route::get('save-post', "HomeController@savePost");
+        Route::get('list-save-post', "HomeController@listSavePost");
         Route::post('update-user', "AuthController@updateUser");
     });
 });

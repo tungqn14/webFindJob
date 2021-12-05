@@ -137,7 +137,6 @@ class AuthController extends Controller
     public function updateUser(Request $request){
         $user = User::where("auth_token",$request->token)->get()->first();
         $validator = Validator::make($request->all(),[
-
             'fullName' => 'required',
             'birthDay' => 'required',
             'address' => 'required',
@@ -167,7 +166,7 @@ class AuthController extends Controller
                 "status"=> 400
             ]);
         }else{
-            $user->email = $request->email;
+
             $user->fullName = $request->fullName;
             $user->birthDay = $request->birthDay;
             $user->address = $request->address;

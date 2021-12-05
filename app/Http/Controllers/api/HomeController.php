@@ -112,9 +112,9 @@ class HomeController extends Controller
     public function listSavePost(Request $request){
         $arrIdPost = [];
         $user = User::where($request->token)->get()->first();
-        $arrPost = $this->savePost->where("user_id",$user->id)->first();
+        $arrPost = $this->savePost->where("user_id",$user->id)->get()->toArray();
         foreach ($arrPost as $idPost){
-            array_push($arrIdPost,$idPost->post_id);
+            array_push($arrIdPost,$idPost['post_id']);
         }
         if($arrIdPost){
             $datas  = $this->post->with("users.company.location")->whereIn("id_post",$arrIdPost)->paginate(15);
