@@ -80,9 +80,19 @@ class HomeController extends Controller
     public function favorite(Request $request,$id){
 
     }
+
     public function detailCompany(Request $request,$id){
-        $datas = $this->company->with("userPost","users","location")->find($id);
-        if($datas->count()){
+        $company = $this->company->with("userPost","users","location")->find($id);
+        $welfare = Welfare::all();
+        $techs = Skill::all();
+        $carrer = Career::all();
+        $datas = [
+            "company"=> $company,
+            "welfare"=> $welfare,
+            "techs"=> $techs,
+            "carrer"=> $carrer,
+        ];
+        if($company->count()){
             return response()->json([
                 'data'=>$datas,
                 "status"=>200
@@ -94,14 +104,14 @@ class HomeController extends Controller
       ]);
 
     }
+
     public function savePost(Request $request){
-        $user = User::where($request->token)->get()->first();
-        $checkUser = $this->savePost->where('user_id',$user->id)->where('post_id',$request->idPost)->first();
-        if($checkUser) {
-            $checkUser->delete();
+
+        $user = User::where("auth_token",$request->token)->get()->first();
+        if($this->savePost->where('user_id',$user->id)->where('post_id',$request->idPost)->delete()) {
             return response()->json(["status" => 200, "code" => -1, "message" => "Hủy bài viết ra khỏi danh sách xem thành công"]);
         }else{
-            $this->savePost->user_id = $request->idUser;
+            $this->savePost->user_id = $user->id;
             $this->savePost->post_id = $request->idPost;
             if($this->savePost->save()){
                 return response()->json(["status" => 200, "code" => 1, "message" => "Thêm bài viết vào danh sách lưu thành công"]);
@@ -110,6 +120,7 @@ class HomeController extends Controller
         return response()->json(["status"=>500,"code"=>500,"message"=>"Lỗi server !!! Xử lý thất bại"]);
 
 }
+
     public function listSavePost(Request $request){
         $arrIdPost = [];
         $user = User::where($request->token)->get()->first();
