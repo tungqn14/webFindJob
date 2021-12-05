@@ -27,5 +27,7 @@ Route::namespace('api')->group(function () {
     Route::get('home', "HomeController@index");
     Route::get('detail-post-{id}', "HomeController@detailPost");
     Route::get('detail-company-{id}', "HomeController@detailCompany");
-
+    Route::middleware('jwt')->group(function () {
+        Route::post('save-post', "HomeController@savePost");
+    });
 });

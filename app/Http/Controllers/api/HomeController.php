@@ -11,6 +11,7 @@ use App\Model\Location;
 use App\Model\Posts;
 use App\Model\Skill;
 use App\Model\User;
+use App\Model\UserSavePost;
 use App\Model\Welfare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -88,6 +89,9 @@ class HomeController extends Controller
           'data'=>"",
           "status"=>500
       ]);
+
+    }
+    public function savePost(Request $request,$id){
 
     }
 }

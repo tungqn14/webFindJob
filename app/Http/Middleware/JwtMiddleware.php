@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Model\User;
 use Closure;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
@@ -20,8 +21,12 @@ class JwtMiddleware
     public function handle($request, Closure $next)
     {
             try {
-                $user = JWTAuth::toUser($request->input('token'));
-
+                //$user = JWTAuth::toUser($request->input('token'));
+                if(User::where('auth_token',$request->input('token'))){
+                    return $next($request);
+                }else{
+                    return response()->json(["message"=>"Tài khoản người dùng ko đứng",400]);
+                }
             } catch (\Exception $e) {
                 if ($e instanceof TokenInvalidException) {
                     return $next($request);

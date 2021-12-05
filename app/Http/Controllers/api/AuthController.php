@@ -51,15 +51,22 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->get()->first();
             if ($user && Hash::check($request->password, $user->password))
             {
-                $response = ['success'=>true, 'data'=>['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->fullName, 'email'=>$user->email,'phone'=>$user->phone,"address"=>$user->address,"desiredMoney"=>$user->desiredMoney,"avatar"=>$user->avatar,"exp"=>$user->exp,"descripYourself"=>$user->descripYourself,"position"=>$user->position,"cv"=>$user->cv,"birthDay"=>$user->birthDay]];
+                if($user->auth_token){
+                  return  response()->json(['success'=>true, 'data'=>['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->fullName, 'email'=>$user->email,'phone'=>$user->phone,"address"=>$user->address,"desiredMoney"=>$user->desiredMoney,"avatar"=>$user->avatar,"exp"=>$user->exp,"descripYourself"=>$user->descripYourself,"position"=>$user->position,"cv"=>$user->cv,"birthDay"=>$user->birthDay]]) ;
+                }
+                $token = self::getToken($request->email, $request->password);
+                $user->auth_token = $token;
+                if($user->save()){
+                    return response()->json(['success' => true, 'data' => ['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->fullName, 'email'=>$user->email,'phone'=>$user->phone,"address"=>$user->address,"desiredMoney"=>$user->desiredMoney,"avatar"=>$user->avatar,"exp"=>$user->exp,"descripYourself"=>$user->descripYourself,"position"=>$user->position,"cv"=>$user->cv,"birthDay"=>$user->birthDay]]);
+                }
+                return response()->json(["success"=>false,"data"=>"Đăng nhập thất bại"], 500);
             }
             else{
-                $response = ['success'=>false, 'data'=>'Tài khoản hoặc mật khẩu không đúng'];
+                return response()->json(['success'=>false, 'data'=>'Tài khoản hoặc mật khẩu không đúng']);
             }
-            return response()->json($response, 201);
-
+            return response()->json(["success"=>false,"data"=>"Đăng nhập thất bại"], 500);
         }
-        return response()->json(['success'=>false, 201]);
+        return response()->json(["success"=>false,"data"=>"Đăng nhập thất bại"], 500);
     }
 
     public function register(Request $request, User $user)
@@ -104,14 +111,15 @@ class AuthController extends Controller
 
                 $user->auth_token = $token; // update user token
 
-                $user->save();
-
-                $response = ['success' => true, 'data' => ['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->fullName, 'email'=>$user->email,'phone'=>$user->phone,"address"=>$user->address,"desiredMoney"=>$user->desiredMoney,"avatar"=>$user->avatar,"exp"=>$user->exp,"descripYourself"=>$user->descripYourself,"position"=>$user->position,"cv"=>$user->cv,"birthDay"=>$user->birthDay]];
+                if($user->save()){
+                    return response()->json(['success' => true, 'data' => ['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->fullName, 'email'=>$user->email,'phone'=>$user->phone,"address"=>$user->address,"desiredMoney"=>$user->desiredMoney,"avatar"=>$user->avatar,"exp"=>$user->exp,"descripYourself"=>$user->descripYourself,"position"=>$user->position,"cv"=>$user->cv,"birthDay"=>$user->birthDay]]);
+                }
+                return response()->json(['success' => false, 'data'=>"Token tạo ko thành công hãy quay lại đăng nhập"]);
             } else
-                $response = ['success' => false, 'data' => 'Đăng ký tài khoản bị lỗi'];
+                return response()->json(['success' => false, 'data' => 'Đăng ký tài khoản bị lỗi']);
         }
+        return response()->json(['success' => false, 'data' => 'Đăng ký tài khoản thất bại']);
 
-        return response()->json($response, 201);
     }
 
     public function logOut(Request $request){
