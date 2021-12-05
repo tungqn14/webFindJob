@@ -14,13 +14,13 @@ class CreateLocationsTable extends Migration
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->increments("id");
-            $table->string("name")->nullable();
-            $table->string("code")->nullable();
-            $table->string("division_type")->nullable();
-            $table->string("codename")->nullable();
-            $table->string("phone_code")->nullable();
-            $table->timestamps();
+//            $table->increments("id");
+//            $table->string("name")->nullable();
+//            $table->string("code")->nullable();
+//            $table->string("division_type")->nullable();
+//            $table->string("codename")->nullable();
+//            $table->string("phone_code")->nullable();
+//            $table->timestamps();
         });
     }
 

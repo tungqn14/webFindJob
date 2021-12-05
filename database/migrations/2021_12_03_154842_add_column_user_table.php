@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserSkillTable extends Migration
+class AddColumnUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateUserSkillTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_skill', function (Blueprint $table) {
-//            $table->increments("id");
-//            $table->integer("user_id");
-//            $table->integer("skill_id");
-//            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->longText('auth_token')->after('cv')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateUserSkillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_skill');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('auth_token');
+        });
     }
 }

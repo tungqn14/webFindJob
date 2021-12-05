@@ -12,6 +12,7 @@ trait TraitShowData
                                 '3' => "Bán thời gian",
                                 '4' => "Toàn thời gian",
     ]);
+
     public $typeRank = array([ '1' => "Cộng tác viên",
                                 '2' => "Nhân viên",
                                 '3' => "Quản lý dự án",

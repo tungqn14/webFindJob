@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Model\Career;
 use App\Model\Company;
+use App\Model\Skill;
+use App\Model\Welfare;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\JWTAuth;
 
@@ -17,6 +20,10 @@ class CompanyController extends Controller
     }
     public function index(){
         $datas  = $this->company->with("userPost","users","location")->paginate(15);
+        $welfare = Welfare::all();
+        $techs = Skill::all();
+        $carrer = Career::all();
+
         return response()->json([
             'data'=>$datas,
             "status"=>200

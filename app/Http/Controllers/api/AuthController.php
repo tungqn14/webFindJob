@@ -8,41 +8,71 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
-    public $loginAfterSignup = true;
-
-    public function __construct()
+    private function getToken($email, $password)
     {
-        $this->middleware('jwt', ['except' => ['login']]);
-    }
-
-    public function login(Request $request){
-        $credentials = $request->only('email', 'password');
-        if (! $token = Auth("api")->attempt($credentials)) {
-            return response()->json(['message' => 'Đăng nhập thất bại'], 401);
+        $token = null;
+        //$credentials = $request->only('email', 'password');
+        try {
+            if (!$token = JWTAuth::attempt(['email'=>$email, 'password'=>$password])) {
+                return response()->json([
+                    'response' => 'error',
+                    'message' => 'Mật khẩu hoặc email không đúng',
+                    'token'=> $token
+                ]);
+            }
+        } catch (JWTException $e) {
+            return response()->json([
+                'response' => 'error',
+                'message' => 'Tạo token bị lỗi',
+            ]);
         }
-        return $this->respondWithToken($token);
-    }
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth("api")->factory()->getTTL() * 60
-        ]);
-    }
-    public function register(Request $request){
 
+        return $token;
+    }
+
+    public function login(Request $request)
+    {
         $validator = Validator::make($request->all(),[
-            'email' => 'required|email',
+            'email' => 'required',
+            'password' => 'required',
+        ],[
+            "email.required"=>"Email không được để trống",
+            "password.required"=>"Mật khẩu không được để trống",
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                "message"=>$validator->errors(),
+                "status"=> 400
+            ]);
+        } else {
+            $user = User::where('email', $request->email)->get()->first();
+            if ($user && Hash::check($request->password, $user->password))
+            {
+                $response = ['success'=>true, 'data'=>['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->fullName, 'email'=>$user->email,'phone'=>$user->phone,"address"=>$user->address,"desiredMoney"=>$user->desiredMoney,"avatar"=>$user->avatar,"exp"=>$user->exp,"descripYourself"=>$user->descripYourself,"position"=>$user->position,"cv"=>$user->cv,"birthDay"=>$user->birthDay]];
+            }
+            else{
+                $response = ['success'=>false, 'data'=>'Tài khoản hoặc mật khẩu không đúng'];
+            }
+            return response()->json($response, 201);
+
+        }
+        return response()->json(['success'=>false, 201]);
+    }
+
+    public function register(Request $request, User $user)
+    {
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|unique:users,email',
             'fullName' => 'required',
             'phone' => 'required',
             'password' => 'required',
         ],[
             "email.email"=>"Email phải đúng định dạng",
             "email.required"=>"Email không được để trống",
+            "email.unique"=>"Email đã tồn tại",
             "fullName.required"=>"Tên người dùng không được để trống",
             "phone.required"=>"Số điện thoại không được để trống",
             "password.required"=>"Mật khẩu không được để trống",
@@ -53,32 +83,51 @@ class AuthController extends Controller
                 "message"=>$validator->errors(),
                 "status"=> 400
             ]);
+        } else {
+            $payload = [
+                'password' => Hash::make($request->password),
+                'email' => $request->email,
+                'fullName' => $request->name,
+                'phone' => $request->phone,
+                'user_level' => 2,
+                'auth_token' => '',
+            ];
 
-        } else{
-            $user = new User();
-            $user->fullName = $request->fullName;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->password = Hash::make($request->password);
-            $user->user_level = 2;
-            $user->save();
-            if($this->loginAfterSignup){
-                return $this->login($request);
-            }
-            return response()->json([
-                "user"=>$user,
-                "message"=>"Đăng ký tài khoản thành công",
-                "status"=> 200
-            ]);
+            $user = new User($payload);
+            if ($user->save()) {
+
+                $token = self::getToken($request->email, $request->password); // generate user token
+
+                if (!is_string($token)) return response()->json(['success' => false, 'data' => 'Lỗi khởi tạo token'], 201);
+
+                $user = User::where('email', $request->email)->get()->first();
+
+                $user->auth_token = $token; // update user token
+
+                $user->save();
+
+                $response = ['success' => true, 'data' => ['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->fullName, 'email'=>$user->email,'phone'=>$user->phone,"address"=>$user->address,"desiredMoney"=>$user->desiredMoney,"avatar"=>$user->avatar,"exp"=>$user->exp,"descripYourself"=>$user->descripYourself,"position"=>$user->position,"cv"=>$user->cv,"birthDay"=>$user->birthDay]];
+            } else
+                $response = ['success' => false, 'data' => 'Đăng ký tài khoản bị lỗi'];
         }
+
+        return response()->json($response, 201);
     }
+
     public function logOut(Request $request){
         $validator = Validator::make($request->all(),[
             'token' => 'required',
         ],[
             "token.required"=>"Token không được để trống",
         ]);
-        Auth("api")->logout();
-            return response()->json(['message' => 'Đăng xuất thành công']);
+       $user = User::where("auth_token",$request->token)->get()->first();
+       if($user){
+           $user->auth_token = "";
+           if($user->save()){
+               return response()->json(['message' => 'Đăng xuất thành công',"status"=>200]);
+           }
+           return response()->json(['message' => 'Đăng xuất thất bại',"status"=>500]);
+       }
+        return response()->json(['message' => 'Đăng xuất thất bại',"status"=>500]);
     }
 }

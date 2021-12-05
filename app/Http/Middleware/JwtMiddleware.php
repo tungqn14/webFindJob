@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\JWTAuth;
 
 
 class JwtMiddleware
@@ -12,23 +13,29 @@ class JwtMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        try {
-            $user =  JWTAuth::parseToken()->authenticate();
-        }catch (\Exception $exception){
-            if($exception instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                return response()->json(["message"=>"Token ko hợp lệ"]);
+            try {
+                $user = JWTAuth::toUser($request->input('token'));
+
+            } catch (\Exception $e) {
+                if ($e instanceof TokenInvalidException) {
+                    return $next($request);
+                    return response()->json(['error' => 'Token is Invalid']);
+                } else if ($e instanceof TokenExpiredException) {
+                    return $next($request);
+                    return response()->json(['error' => 'Token is Expired']);
+                } else {
+                    return $next($request);
+                    return response()->json(['error' => 'Something is wrong']);
+                }
             }
-            if($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                return response()->json(["message"=>"Token hết hạn"]);
-            }
-            return response()->json(["message"=>"Token ko được tìm thấy"]);
-        }
-        return $next($request);
-    }
+
+            return $next($request);
+
+}
 }
