@@ -27,6 +27,7 @@ class CreateUserSavePost extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('user_save_post');
     }
 }

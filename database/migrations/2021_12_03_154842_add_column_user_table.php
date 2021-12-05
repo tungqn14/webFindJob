@@ -14,7 +14,7 @@ class AddColumnUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-           // $table->longText('auth_token')->after('cv')->nullable();
+            $table->longText('auth_token')->after('cv')->nullable();
         });
     }
 
