@@ -147,6 +147,7 @@ class AuthController extends Controller
             'position' => 'required',
             'cv' => 'required',
             'phone' => 'required',
+
         ],[
             "fullName.required"=>"Tên đầy đủ không được để trống",
             "birthDay.required"=>"Ngày tháng năm sinh không được để trống",
@@ -158,7 +159,6 @@ class AuthController extends Controller
             "position.required"=>"Vị trí hiện tại không được để trống",
             "cv.required"=>"Link CV cá nhân ko được để trống không được để trống",
             "phone.required"=>"Link CV cá nhân ko được để trống không được để trống",
-
         ]);
         if($validator->fails()){
             return response()->json([
@@ -166,8 +166,8 @@ class AuthController extends Controller
                 "status"=> 400
             ]);
         }else{
-
             $user->fullName = $request->fullName;
+            $user->email = $request->email;
             $user->birthDay = $request->birthDay;
             $user->address = $request->address;
             $user->desiredMoney = $request->desiredMoney;
@@ -183,6 +183,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'Cập nhật thông tin thât bại',"status"=>200]);
         }
 
-        return response()->json(['message' => 'Cập nhật thông tin thất bại',"status"=>200]);
+        return response()->json(['message' => 'Cập nhật thông tin thất bại',"status"=>500]);
     }
 }
