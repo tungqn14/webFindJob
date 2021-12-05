@@ -137,7 +137,7 @@ class AuthController extends Controller
     public function updateUser(Request $request){
         $user = User::where("auth_token",$request->token)->get()->first();
         $validator = Validator::make($request->all(),[
-            'email' =>'required|unique:users,email,'.$user->id,
+
             'fullName' => 'required',
             'birthDay' => 'required',
             'address' => 'required',
@@ -150,8 +150,6 @@ class AuthController extends Controller
             'phone' => 'required',
         ],[
             "fullName.required"=>"Tên đầy đủ không được để trống",
-            "email.required"=>"Email không được để trống",
-            "email.unique"=>"Email đã tồn tại, vui lòng nhập email khác",
             "birthDay.required"=>"Ngày tháng năm sinh không được để trống",
             "address.required"=>"Địa chỉ không được để trống",
             "desiredMoney.required"=>"Tiền lương mong muốn không được để trống",

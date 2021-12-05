@@ -21,15 +21,17 @@ class HomeController extends Controller
     protected $company;
     protected $post;
     protected $user;
+    protected $savePost;
     protected $cv;
-    public function __construct(Company $company,Posts $post,User $user,CvSubmit $cv,Location $location)
+    public function __construct(Company $company,Posts $post,User $user,CvSubmit $cv,Location $location,UserSavePost $savePost)
     {
-       // $this->middleware('jwt', ['except' => ['index']]);
+
         $this->company = $company;
         $this->post = $post;
         $this->user = $user;
         $this->cv = $cv;
         $this->location = $location;
+        $this->savePost = $savePost;
     }
     public function index(){
         $datas  = $this->company->with("userPost","users","location")->paginate(5);
@@ -91,7 +93,33 @@ class HomeController extends Controller
       ]);
 
     }
-    public function savePost(Request $request,$id){
+    public function savePost(Request $request){
+        $user = User::where($request->token)->get()->first();
+        $checkUser = $this->savePost->where('user_id',$user->id)->where('post_id',$request->idPost)->first();
+        if($checkUser) {
+            $checkUser->delete();
+            return response()->json(["status" => 200, "code" => -1, "message" => "Hủy bài viết ra khỏi danh sách xem thành công"]);
+        }else{
+            $this->savePost->user_id = $request->idUser;
+            $this->savePost->post_id = $request->idPost;
+            if($this->savePost->save()){
+                return response()->json(["status" => 200, "code" => 1, "message" => "Thêm bài viết vào danh sách lưu thành công"]);
+            }
+        }
+        return response()->json(["status"=>500,"code"=>500,"message"=>"Lỗi server !!! Xử lý thất bại"]);
 
+}
+    public function listSavePost(Request $request){
+        $arrIdPost = [];
+        $user = User::where($request->token)->get()->first();
+        $arrPost = $this->savePost->where("user_id",$user->id)->first();
+        foreach ($arrPost as $idPost){
+            array_push($arrIdPost,$idPost->post_id);
+        }
+        if($arrIdPost){
+            $datas  = $this->post->with("users.company.location")->whereIn("id_post",$arrIdPost)->paginate(15);
+            return response()->json(["status"=>200,"message"=>"Hiển thị danh sách bài viết đã lưu thành công","data"=>$datas]);
+        }
+        return response()->json(["status"=>500,"message"=>"Lỗi server !!! Hiển thị danh sách bài viết đã lưu thất bại"]);
     }
 }
