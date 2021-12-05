@@ -108,7 +108,7 @@ class HomeController extends Controller
     public function savePost(Request $request){
 
         $user = User::where("auth_token",$request->token)->get()->first();
-        if($this->savePost->where('user_id',$user->id)->where('post_id',$request->idPost)->delete()) {
+        if(($this->savePost->where('user_id',$user->id)->where('post_id',$request->idPost))->delete()) {
             return response()->json(["status" => 200, "code" => -1, "message" => "Hủy bài viết ra khỏi danh sách xem thành công"]);
         }else{
             $this->savePost->user_id = $user->id;
@@ -123,7 +123,7 @@ class HomeController extends Controller
 
     public function listSavePost(Request $request){
         $arrIdPost = [];
-        $user = User::where($request->token)->get()->first();
+        $user = User::where("auth_token",$request->token)->get()->first();
         $arrPost = $this->savePost->where("user_id",$user->id)->get()->toArray();
         foreach ($arrPost as $idPost){
             array_push($arrIdPost,$idPost['post_id']);
@@ -132,7 +132,7 @@ class HomeController extends Controller
             $datas  = $this->post->with("users.company.location")->whereIn("id_post",$arrIdPost)->paginate(15);
             return response()->json(["status"=>200,"message"=>"Hiển thị danh sách bài viết đã lưu thành công","data"=>$datas]);
         }
-        return response()->json(["status"=>500,"message"=>"Lỗi server !!! Hiển thị danh sách bài viết đã lưu thất bại"]);
+        return response()->json(["status"=>500,"message"=>"Lỗi server !!! Hiển thị danh sách bài viết đã lưu thất bại","data"=>'']);
     }
 
     public function applyPost(Request $request){
