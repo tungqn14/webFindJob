@@ -30,6 +30,7 @@ Route::namespace('api')->group(function () {
     Route::middleware('jwt')->group(function () {
         Route::get('save-post', "HomeController@savePost");
         Route::get('list-save-post', "HomeController@listSavePost");
+        Route::post('apply-post', "HomeController@applyPost");
         Route::post('update-user', "AuthController@updateUser");
     });
 });

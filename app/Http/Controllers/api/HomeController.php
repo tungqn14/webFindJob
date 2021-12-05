@@ -15,6 +15,7 @@ use App\Model\UserSavePost;
 use App\Model\Welfare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -121,5 +122,40 @@ class HomeController extends Controller
             return response()->json(["status"=>200,"message"=>"Hiển thị danh sách bài viết đã lưu thành công","data"=>$datas]);
         }
         return response()->json(["status"=>500,"message"=>"Lỗi server !!! Hiển thị danh sách bài viết đã lưu thất bại"]);
+    }
+
+    public function applyPost(Request $request){
+        $validator = Validator::make($request->all(), [
+            'nameSubmit' => 'required',
+            'phoneSubmit' => 'required',
+            'cvSubmit' => 'required',
+            'emailSubmit' => "required",
+        ],[
+            "nameSubmit.required"=>"Tên ứng viên không được để trống",
+            "phoneSubmit.required"=>"Số điện thoại không được để trống",
+            "cvSubmit.required"=>"CV ứng viên không được để trống",
+            "emailSubmit.required"=>"Email ứng viên không được để trống",
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                "message"=>$validator->errors(),
+                "status"=> 400
+            ]);
+        }
+        $this->cv->cv = $request->cvSubmit;
+        $this->cv->name = $request->nameSubmit;
+        $this->cv->telephone = $request->phoneSubmit;
+        $this->cv->email = $request->emailSubmit;
+        $this->cv->post_submit_id = $request->postId;
+        if($this->cv->save()){
+            return response()->json([
+                'message' => 'Gửi cv apply thành công',
+                'status' => 200
+            ]);
+        }
+        return response()->json([
+            'message' => 'Gửi cv apply thất bại',
+            'status' => 500
+        ]);
     }
 }
