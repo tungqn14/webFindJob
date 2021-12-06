@@ -14,6 +14,7 @@ class CreateUserSavePost extends Migration
     public function up()
     {
         Schema::create('user_save_post', function (Blueprint $table) {
+            $table->increments("id");
             $table->integer("user_id");
             $table->integer("post_id");
             $table->timestamps();
