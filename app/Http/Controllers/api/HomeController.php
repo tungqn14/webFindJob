@@ -107,8 +107,7 @@ class HomeController extends Controller
 
     public function savePost(Request $request){
         $user = User::where("auth_token",$request->token)->get()->first();
-        $query = 'DELETE FROM user_save_post where user_id = ? AND post_id= ? ';
-       $check = \DB::delete($query, [$user->id,$request->idPost]);
+        $check = $this->savePost->where('user_id',$user->id)->where("post_id",$request->idPost)->delete();
         if($check) {
             return response()->json(["status" => 200, "code" => -1, "message" => "Hủy bài viết ra khỏi danh sách xem thành công"]);
         }else{
