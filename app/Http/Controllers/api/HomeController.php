@@ -123,7 +123,7 @@ class HomeController extends Controller
 
     public function listSavePost(Request $request){
         $arrIdPost = [];
-        $user = User::where("auth_token",$request->token)->get()->first();
+        $user =  $this->user->where("auth_token",$request->token)->where("user_level",2)->get()->first();
         $arrPost = $this->savePost->where("user_id",$user->id)->get()->toArray();
         foreach ($arrPost as $idPost){
             array_push($arrIdPost,$idPost['post_id']);
