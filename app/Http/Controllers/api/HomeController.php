@@ -11,27 +11,31 @@ use App\Model\Location;
 use App\Model\Posts;
 use App\Model\Skill;
 use App\Model\User;
+use App\Model\UserSavePost;
 use App\Model\Welfare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
     protected $company;
     protected $post;
     protected $user;
+    protected $savePost;
     protected $cv;
-    public function __construct(Company $company,Posts $post,User $user,CvSubmit $cv,Location $location)
+    public function __construct(Company $company,Posts $post,User $user,CvSubmit $cv,Location $location,UserSavePost $savePost)
     {
-       // $this->middleware('jwt', ['except' => ['index']]);
+
         $this->company = $company;
         $this->post = $post;
         $this->user = $user;
         $this->cv = $cv;
         $this->location = $location;
+        $this->savePost = $savePost;
     }
     public function index(){
-        $datas  = $this->company->with("userPost","users","location")->paginate(15);
+        $datas  = $this->company->with("userPost","users","location")->paginate(5);
             return response()->json([
                 'data'=>$datas,
                 "status"=>200
@@ -76,9 +80,19 @@ class HomeController extends Controller
     public function favorite(Request $request,$id){
 
     }
+
     public function detailCompany(Request $request,$id){
-        $datas = $this->company->with("userPost","users","location")->find($id);
-        if($datas->count()){
+        $company = $this->company->with("userPost","users","location")->find($id);
+        $welfare = Welfare::all();
+        $techs = Skill::all();
+        $carrer = Career::all();
+        $datas = [
+            "company"=> $company,
+            "welfare"=> $welfare,
+            "techs"=> $techs,
+            "carrer"=> $carrer,
+        ];
+        if($company->count()){
             return response()->json([
                 'data'=>$datas,
                 "status"=>200
@@ -89,5 +103,70 @@ class HomeController extends Controller
           "status"=>500
       ]);
 
+    }
+
+    public function savePost(Request $request){
+        $user = User::where("auth_token",$request->token)->get()->first();
+        $check = $this->savePost->where('user_id',$user->id)->where("post_id",$request->idPost)->delete();
+        if($check) {
+            return response()->json(["status" => 200, "code" => -1, "message" => "Hủy bài viết ra khỏi danh sách xem thành công"]);
+        }else{
+            $this->savePost->user_id = $user->id;
+            $this->savePost->post_id = $request->idPost;
+            if($this->savePost->save()){
+                return response()->json(["status" => 200, "code" => 1, "message" => "Thêm bài viết vào danh sách lưu thành công"]);
+            }
+        }
+        return response()->json(["status"=>500,"code"=>500,"message"=>"Lỗi server !!! Xử lý thất bại"]);
+
+}
+
+    public function listSavePost(Request $request){
+        $arrIdPost = [];
+        $user = User::where("auth_token",$request->token)->get()->first();
+        $arrPost = $this->savePost->where("user_id",$user->id)->get()->toArray();
+        foreach ($arrPost as $idPost){
+            array_push($arrIdPost,$idPost['post_id']);
+        }
+        if($arrIdPost){
+            $datas  = $this->post->with("users.company.location")->whereIn("id_post",$arrIdPost)->paginate(15);
+            return response()->json(["status"=>200,"message"=>"Hiển thị danh sách bài viết đã lưu thành công","data"=>$datas]);
+        }
+        return response()->json(["status"=>500,"message"=>"Lỗi server !!! Hiển thị danh sách bài viết đã lưu thất bại","data"=>'']);
+    }
+
+    public function applyPost(Request $request){
+        $validator = Validator::make($request->all(), [
+            'nameSubmit' => 'required',
+            'phoneSubmit' => 'required',
+            'cvSubmit' => 'required',
+            'emailSubmit' => "required",
+        ],[
+            "nameSubmit.required"=>"Tên ứng viên không được để trống",
+            "phoneSubmit.required"=>"Số điện thoại không được để trống",
+            "cvSubmit.required"=>"CV ứng viên không được để trống",
+            "emailSubmit.required"=>"Email ứng viên không được để trống",
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                "message"=>$validator->errors(),
+                "status"=> 400
+            ]);
+        }
+        $this->cv->cv = $request->cvSubmit;
+        $this->cv->name = $request->nameSubmit;
+        $this->cv->telephone = $request->phoneSubmit;
+        $this->cv->email = $request->emailSubmit;
+        $this->cv->post_submit_id = $request->postId;
+        if($this->cv->save()){
+            return response()->json([
+                'message' => 'Gửi cv apply thành công',
+                'status' => 200
+            ]);
+        }
+        return response()->json([
+            'message' => 'Gửi cv apply thất bại',
+            'status' => 500
+        ]);
     }
 }

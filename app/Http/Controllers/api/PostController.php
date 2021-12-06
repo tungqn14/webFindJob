@@ -4,21 +4,47 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Model\Company;
+use App\Model\CvSubmit;
+use App\Model\Location;
 use App\Model\Posts;
+use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $company;
+    protected $post;
+    protected $user;
+    protected $cv;
+    public function __construct(Company $company,Posts $post,User $user,CvSubmit $cv,Location $location)
     {
-        //
+
+        $this->company = $company;
+        $this->post = $post;
+        $this->user = $user;
+        $this->cv = $cv;
+        $this->location = $location;
     }
 
+    public function index()
+    {
+        $datas  = $this->post->with("users.company.location")->paginate(6);
+        return response()->json([
+            'datas'=>$datas,
+            "status"=>200
+        ]);
+
+    }
+    public function listAll()
+    {
+        $datas  = $this->post->with("users.company.location")->paginate(15);
+        return response()->json([
+            'datas'=>$datas,
+            "status"=>200
+        ]);
+
+    }
     /**
      * Show the form for creating a new resource.
      *

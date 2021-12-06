@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->text('descripYourself')->comment("Mô tả bản thân")->nullable();
             $table->string('position')->comment("frontend developer hay backend")->nullable();
             $table->string('cv')->nullable();
+            $table->longText('auth_token')->nullable();
             $table->string('typeTimeUser')->comment("Thời gian làm fulltime hay ko")->nullable();
             $table->tinyInteger('user_level')->comment("Phân quyền người dùng: 0 : Admin,1:HR,2:ứng viên ")->default(2);
             $table->integer('company_id')->comment("Thuộc về công ty nào")->nullable();
