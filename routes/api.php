@@ -25,6 +25,8 @@ Route::namespace('api')->group(function () {
     Route::get('list-post-home', "PostController@index");
     Route::get('list-post-all', "PostController@listAll");
     Route::get('home', "HomeController@index");
+    Route::get('search', "HomeController@search");
+
     Route::get('detail-post-{id}', "HomeController@detailPost");
     Route::get('detail-company-{id}', "HomeController@detailCompany");
     Route::middleware('jwt')->group(function () {
@@ -32,5 +34,6 @@ Route::namespace('api')->group(function () {
         Route::get('list-save-post', "HomeController@listSavePost");
         Route::post('apply-post', "HomeController@applyPost");
         Route::post('update-user', "AuthController@updateUser");
+        Route::get('notify', "HomeController@notify");
     });
 });

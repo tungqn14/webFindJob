@@ -20,6 +20,7 @@ class CreateCvSubmitTable extends Migration
             $table->string("email")->nullable();
             $table->integer("post_submit_id")->nullable();
             $table->string("cv")->nullable();
+            $table->tinyInteger("active")->default(0);
             $table->timestamps();
         });
     }

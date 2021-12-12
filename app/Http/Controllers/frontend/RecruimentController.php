@@ -86,7 +86,6 @@ class RecruimentController extends Controller
         $listCV = $this->listCv->with("post")->whereHas("post",function ($query) use($idAuth){
             $query->where("user_id","=",$idAuth);
         })->paginate(10);
-
         return view("frontend.recruiments.manageCvSubmit.index",compact('listCV'));
     }
 

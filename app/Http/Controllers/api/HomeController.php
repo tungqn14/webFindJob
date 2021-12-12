@@ -77,10 +77,12 @@ class HomeController extends Controller
             "status"=>200
         ]);
     }
-    public function favorite(Request $request,$id){
+    public function search(Request $request){
 
     }
+    public function notify(Request $request){
 
+    }
     public function detailCompany(Request $request,$id){
         $company = $this->company->with("userPost","users","location")->find($id);
         $welfare = Welfare::all();
@@ -158,14 +160,15 @@ class HomeController extends Controller
         $this->cv->telephone = $request->phoneSubmit;
         $this->cv->email = $request->emailSubmit;
         $this->cv->post_submit_id = $request->postId;
+        $this->cv->active = 2;
         if($this->cv->save()){
             return response()->json([
-                'message' => 'Gửi cv apply thành công',
+                'message' => 'Gửi cv ứng tuyển thành công',
                 'status' => 200
             ]);
         }
         return response()->json([
-            'message' => 'Gửi cv apply thất bại',
+            'message' => 'Gửi cv ứng tuyển thất bại',
             'status' => 500
         ]);
     }

@@ -101,6 +101,7 @@ class HomeController extends Controller
         $this->cv->telephone = $request->phoneSubmit;
         $this->cv->email = $request->emailSubmit;
         $this->cv->post_submit_id = $request->postId;
+        $this->cv->active = 2;
         if($this->cv->save()){
             return response()->json([
                 'message' => 'Gửi cv apply thành công',

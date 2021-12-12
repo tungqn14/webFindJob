@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Model\CvSubmit;
+use App\Observers\CvSubmitObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        CvSubmit::observe(CvSubmitObserver::class);
     }
 }

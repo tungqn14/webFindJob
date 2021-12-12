@@ -268,7 +268,6 @@
                                         <label for="number" class="col-sm-2 col-form-label">FILE PDF CV</label>
                                         <div class="col-sm-10">
                                             <input type="file" required id="cvSubmit" name="cvSubmit">
-                                            <input type="hidden" id="cvSubmit_Old"  name="cvSubmit_Old">
                                             <p style="color: red;font-style: italic" class="my-2 error_cvSubmit"></p>
                                         </div>
                                     </div>
@@ -320,7 +319,7 @@
                                                     <label for="number" class="col-sm-2 col-form-label">FILE PDF CV</label>
                                                     <div class="col-sm-10">
                                                         <input type="file" required id="cvSubmit" name="cvSubmit">
-                                                        <input type="hidden" id="cvSubmit_Old"  name="cvSubmit_Old">
+
                                                      <p style="color: red;font-style: italic" class="mt-2 error_cvSubmit"></p>
                                                     </div>
 

@@ -16,10 +16,10 @@ class CompanyController extends Controller
     public function __construct(Company $company)
     {
         $this->company = $company;
-        //$this->middleware('jwt', ['except' => ['index']]);
+
     }
     public function index(){
-        $listCompany  = $this->company->with("userPost","users","location")->paginate(15);
+        $listCompany  = $this->company->with("userPost","users","location")->all();
         $welfare = Welfare::all();
         $techs = Skill::all();
         $carrer = Career::all();

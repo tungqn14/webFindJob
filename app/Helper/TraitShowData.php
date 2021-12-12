@@ -32,4 +32,9 @@ trait TraitShowData
         '5' => "400-500",
         '6' => ">500",
     ]);
+    public $acceptCvStatus = array(
+        ['0' => "Từ chối","class"=>"badge-danger"],
+        ['1' => "Chấp nhận","class"=>"badge-primary"],
+        ['2' => "Đang xử lý","class"=>"badge-secondary"],
+    );
 }

@@ -83,6 +83,7 @@ Route::namespace('frontend')->group(function () {
     Route::post('/store-apply-job', "HomeController@storeApplyJob")->name("home.storeApplyJob");
     Route::get('/select-form-register', "HomeController@selectLinkRegister")->name("home.selectLinkRegister");
     Route::get('/logout', "LoginController@logOut")->name("login.logOut");
+
     Route::prefix('/login')->group(function () {
         Route::get('/form', "LoginController@formLogin")->name("login.formLogin");
         Route::post('/check-login', "LoginController@checkLogin")->name("login.checkLogin");
@@ -120,6 +121,7 @@ Route::namespace('frontend')->group(function () {
             Route::get('/delete-post-{id}', "ManagePostController@delete")->name("ManagePost.delete");
         });
         Route::prefix('/manage-cv-submit')->group(function () {
+            Route::post('/accept-cv', "ManageCvSubmitController@acceptCV")->name("CvSubmit.acceptCV");
         });
     });
     Route::prefix('candidate')->group(function () {
