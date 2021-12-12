@@ -38,7 +38,7 @@ class PostController extends Controller
     }
     public function listAll()
     {
-        $datas  = $this->post->with("users.company.location")->all();
+        $datas  = $this->post->with("users.company.location")->get();
         return response()->json([
             'datas'=>$datas,
             "status"=>200

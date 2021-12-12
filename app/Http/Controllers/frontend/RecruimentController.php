@@ -100,4 +100,5 @@ class RecruimentController extends Controller
         return redirect()->back()->with("messDeleteFailCvSubmit","Xóa thất bại");
     }
 
+
 }

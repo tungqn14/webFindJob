@@ -137,6 +137,16 @@ class HomeController extends Controller
         return response()->json(["status"=>500,"message"=>"Lỗi server !!! Hiển thị danh sách bài viết đã lưu thất bại","data"=>'']);
     }
 
+    public function checkSavePost(Request $request){
+
+        $user =  $this->user->where("auth_token",$request->token)->where("user_level",2)->get()->first();
+        $check = $this->savePost->where("user_id",$user->id)->where("post_id",$request->postId)->get()->first();
+        if($check){
+            return response()->json(["status"=>200,"message"=>"Tồn tại","code"=>true]);
+        }
+        return response()->json(["status"=>200,"message"=>"Không tồn tại","code"=>false]);
+    }
+
     public function applyPost(Request $request){
         $validator = Validator::make($request->all(), [
             'nameSubmit' => 'required',

@@ -19,7 +19,7 @@ class CompanyController extends Controller
 
     }
     public function index(){
-        $listCompany  = $this->company->with("userPost","users","location")->all();
+        $listCompany  = $this->company->with("userPost","users","location")->get();
         $welfare = Welfare::all();
         $techs = Skill::all();
         $carrer = Career::all();
