@@ -2,7 +2,10 @@
 
 namespace App\Observers;
 
-use App\CvSubmit;
+use App\Model\CvSubmit;
+use App\Model\Posts;
+use App\Model\User;
+use App\Notifications\AcceptCvSubmitNotification;
 use Illuminate\Support\Facades\Log;
 class CvSubmitObserver
 {
@@ -25,7 +28,20 @@ class CvSubmitObserver
      */
     public function updated(CvSubmit $cvSubmit)
     {
-        Log::info(" cái cv vua update la : ".$cvSubmit->name);
+        $userUpdate = User::where("email",$cvSubmit->email)->first();
+       $post = Posts::where("id_post",$cvSubmit->post_submit_id)->first();
+       $data = [
+         "titlePost"=>$post->titlePost,
+//           "emailUser"=>$userUpdate->email,
+//           "fullNamelUser"=>$userUpdate->fullName,
+//           "auth_token"=>$userUpdate->auth_token,
+           "active"=>$cvSubmit->active,
+
+       ];
+        if($cvSubmit->isDirty("active")){
+            $userUpdate->notify(new AcceptCvSubmitNotification($data));
+        }
+
     }
 
     /**

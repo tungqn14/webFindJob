@@ -182,4 +182,34 @@ class HomeController extends Controller
             'status' => 500
         ]);
     }
+
+    public function getNotification(Request $request){
+        $arrNoti = [];
+        $user =  $this->user->where("auth_token",$request->token)->where("user_level",2)->get()->first();
+        if($user->notifications->count() > 0){
+            foreach ($user->notifications as $notification){
+                array_push($arrNoti,$notification->data["message"]);
+            }
+            if($arrNoti){
+                return response()->json([
+                    'data' => $arrNoti,
+                    'message' => "Lấy thông báo thành công",
+                    'status' => 200
+                ]);
+            }
+            return response()->json([
+                'data' => $arrNoti,
+                'message' => "Thông báo trống",
+                'status' => 200
+            ]);
+        }
+
+        return response()->json([
+            'data' =>'',
+            'message' => "Lấy thông báo thất bại !!!",
+            'status' => 500
+        ]);
+
+    }
+
 }

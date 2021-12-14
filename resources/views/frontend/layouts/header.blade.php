@@ -25,17 +25,34 @@
                                 </li>
 
                             </ul>
+                            <?php $user = Auth::user() ?>
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                                 @if(Auth::check() && Auth::user()->user_level == 2)
                                 <div class="pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <div class="btn dropdown-toggle" role="button" id="dropdownCandidate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                       <b class="text-white">{{ Auth::user()->fullName }}</b>
+                                    <div class="btn dropdown-toggle" role="button" id="notifi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                        <b class="text-white"><i style="color: white" class="fas fa-bell"></i>Thông báo ({{ $user->notifications->count()  }})</b>
                                     </div>
-                                    <div class="dropdown-menu" style="top: 74%;left: 91%;" aria-labelledby="dropdownCandidate">
+                                    <div class="dropdown-menu" style="top: 94%;left: 36%;width: 50%;" aria-labelledby="notifi">
+                                    @if($user->notifications->count() > 0)
+                                     @foreach($user->notifications  as $notification)
+                                            <div class="dropdown-item p-2 border-bottom" style="width: 100%;white-space: pre-wrap">{{$notification->data["message"]}}</div>
+                                        @endforeach
+                                        @else
+                                            <div class="dropdown-item p-2 border-bottom" style="width: 100%;white-space: pre-wrap">Không có thông báo</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="pl-4 pl-md-0 ml-0">
+                                    <div class="btn dropdown-toggle" role="button" id="dropdownCandidate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                        <b class="text-white">{{ Auth::user()->fullName }}</b>
+                                    </div>
+                                    <div class="dropdown-menu" style="top: 74%;left: 89%;" aria-labelledby="dropdownCandidate">
                                         <a class="dropdown-item p-2" href="{{ route("profile.index",["id"=>Auth::user()->id]) }}">Trang cá nhân </a>
                                         <a class="dropdown-item p-2" href="{{ route("login.logOut") }}">Đăng xuất</a>
                                     </div>
                                 </div>
+
+
                                 @elseif(Auth::check() && Auth::user()->user_level == 1)
                                     <div class="pl-4 pl-md-0 ml-0 ml-md-4">
                                         <div class="btn dropdown-toggle" role="button" id="dropdownRecruiment" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >

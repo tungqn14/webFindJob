@@ -94,15 +94,15 @@
                                                   {!!  $listPost->reqPost !!}
                                               </div>
                                           </div>
-                                            @if(Auth::check())
-                                                @if(Auth::user()->user_level == 2 )
+                                            @if(Auth::check() && Auth::user()->user_level == 2 )
+
                                                  <div class="text-center my-3">
                                                      <button class="btn btn-danger" data-toggle="modal" data-target="#modalApply">Ứng tuyển ngay</button>
                                                  </div>
-                                                @endif
+
                                             @elseif(!Auth::check())
                                                 <div class="text-center my-3">
-                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalApply">Ứng tuyển ngay</button>
+                                                    <button class="btn btn-danger" onclick="return alert('Hãy đăng nhập để có thể ứng tuyển')" data-toggle="modal" data-target="">Ứng tuyển ngay</button>
                                                 </div>
                                             @endif
                                         </div>
@@ -214,8 +214,7 @@
                 </div>
         </div>
     </div>
-        @if(Auth::check())
-            @if(Auth::user()->user_level == 2 )
+        @if(Auth::check() && Auth::user()->user_level == 2)
                 <div class="modal fade  bd-example-modal-lg" id="modalApply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -261,13 +260,12 @@
                                         </div>
                                         <p style="color: red;font-style: italic" class="my-2 error_cvSubmit"></p>
                                     </div>
-
                                   </div>
                                 @else
                                     <div class="form-group row">
                                         <label for="number" class="col-sm-2 col-form-label">FILE PDF CV</label>
                                         <div class="col-sm-10">
-                                            <input type="file" required id="cvSubmit" name="cvSubmit">
+                                            <input type="file" required class="cvSubmitFileValidate" id="cvSubmit" name="cvSubmit">
                                             <p style="color: red;font-style: italic" class="my-2 error_cvSubmit"></p>
                                         </div>
                                     </div>
@@ -280,59 +278,6 @@
                         </div>
                       </div>
                     </div>
-            @endif
-        @elseif(!Auth::check())
-           <div class="modal fade  bd-example-modal-lg" id="modalApply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Bạn đang ứng tuyển vị trí <span class="mx-2" style="color: #e24c32;">  {{ $listPost->titlePost }}</span></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="formSendCv" enctype="multipart/form-data">
-                                            <div class="form-group row">
-                                                <label for="inputPassword" class="col-sm-2 col-form-label">Họ và tên</label>
-                                                @csrf
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="name" id="nameSubmit"  required class="form-control">
-                                                    <p style="color: red;font-style: italic" class="mt-2 error_nameSubmit"></p>
-                                                    <input type="hidden" id="urlSubmit"  value="{{ route("home.storeApplyJob") }}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                                                <div class="col-sm-10">
-                                                    <input type="email" id="emailSubmit"  name="emailSubmit"  required class="form-control">
-                                                    <p style="color: red;font-style: italic" class="mt-2 error_emailSubmit"></p>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="number" class="col-sm-2 col-form-label">Số điện thoại</label>
-                                                <div class="col-sm-10">
-                                                    <input type="number" id="phoneSubmit" name="phoneSubmit"  required class="form-control">
-                                                    <p style="color: red;font-style: italic" class="mt-2 error_phoneSubmit"></p>
-                                                </div>
-                                            </div>
-                                                <div class="form-group row">
-                                                    <label for="number" class="col-sm-2 col-form-label">FILE PDF CV</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="file" required id="cvSubmit" name="cvSubmit">
-
-                                                     <p style="color: red;font-style: italic" class="mt-2 error_cvSubmit"></p>
-                                                    </div>
-
-                                                </div>
-
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        <button type="button" id="btnSubmitCv" class="btn btn-danger">Gửi CV</button>
-                                    </div>
-                                </div>
-                        </div>
         @endif
 
 </main>
@@ -341,6 +286,14 @@
     <script>
         $('#btnSubmitCv').click(function(e){
             e.preventDefault();
+           const fileInp = document.querySelector(".cvSubmitFileValidate");
+           console.log(fileInp);
+            if(fileInp){
+                if($(".cvSubmitFileValidate").val() == ""){
+                    $('.error_cvSubmit').text("File CV ứng tuyển không được để trống");
+                    return false;
+                }
+            }
             let nameSubmit = $("#nameSubmit").val();
             let emailSubmit = $("#emailSubmit").val();
             let cvSubmit = $("#cvSubmit").prop('files')[0];
@@ -356,7 +309,7 @@
             formData.append('emailSubmit', emailSubmit);
             formData.append('postId', postId);
             formData.append('cvSubmit_Old', cvSubmit_Old);
-            console.log(formData);
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -372,7 +325,7 @@
                 data:formData,
             }) .done(function(res) {
                 if(res.status == 0){
-                    console.log(res.error);
+
                     $.each(res.error, function( index, value ) {
                         $(".error_"+index).text('');
                     });
@@ -380,7 +333,7 @@
                         $(".error_"+index).text(value[0]);
                     });
                 }else{
-                    console.log(res);
+
                     $("#formSendCv")[0].reset();
                     $('#modalApply').modal('hide');
                     location.reload();
@@ -388,7 +341,7 @@
                 }
             })
                 .fail(function(res) {
-                    console.log("res lỗi:"+res);
+
                     alert("Lỗi Server !!! Gửi cv thất bại !!!")
                 });
         });
@@ -427,5 +380,6 @@
                     alert("Lỗi Server !!! Yêu thích công ty thất bại !!!")
                 });
         });
+
     </script>
 @endpush

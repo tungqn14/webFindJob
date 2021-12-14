@@ -82,9 +82,10 @@ class RecruimentController extends Controller
     }
 
     public function listCVSubmit(Request $request){
+        $textSearch = $request->textSearch;
         $idAuth = Auth::user()->id;
-        $listCV = $this->listCv->with("post")->whereHas("post",function ($query) use($idAuth){
-            $query->where("user_id","=",$idAuth);
+        $listCV = $this->listCv->with("post")->whereHas("post",function ($query) use($idAuth,$textSearch){
+            $query->where("user_id","=",$idAuth)->where("titlePost","like","%".$textSearch."%");
         })->paginate(10);
         return view("frontend.recruiments.manageCvSubmit.index",compact('listCV'));
     }
