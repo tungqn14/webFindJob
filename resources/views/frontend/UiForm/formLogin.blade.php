@@ -55,8 +55,8 @@
                                 </div>
                                 <div class="form-group form-check col-lg-10 offset-lg-2">
                                     <input type="checkbox" class="form-check-input" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label> <span class="mx-1">|</span>
-                                    <a class="text-dark" href="#">Quên mật khẩu ?</a>
+                                    <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+
                                 </div>
                                 <div class="form-group row d-block text-center">
                                     <button type="submit"  class="btn btn-primary text-uppercase" >Đăng Nhập</button>

@@ -199,15 +199,15 @@ class HomeController extends Controller
             }
             return response()->json([
                 'data' => $arrNoti,
-                'message' => "Thông báo trống",
+                'message' => "Không có thông báo để hiển thị",
                 'status' => 200
             ]);
         }
 
         return response()->json([
             'data' =>'',
-            'message' => "Lấy thông báo thất bại !!!",
-            'status' => 500
+            'message' => "Không có thông báo để hiển thị",
+            'status' => 200
         ]);
 
     }
