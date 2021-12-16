@@ -134,7 +134,7 @@ class HomeController extends Controller
             $datas  = $this->post->with("users.company.location")->whereIn("id_post",$arrIdPost)->paginate(15);
             return response()->json(["status"=>200,"message"=>"Hiển thị danh sách bài viết đã lưu thành công","data"=>$datas]);
         }
-        return response()->json(["status"=>500,"message"=>"Lỗi server !!! Hiển thị danh sách bài viết đã lưu thất bại","data"=>'']);
+        return response()->json(["status"=>200,"message"=>"Danh sách bài viết đã lưu trống","data"=>'']);
     }
 
     public function checkSavePost(Request $request){
